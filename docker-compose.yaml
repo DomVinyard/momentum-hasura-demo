@@ -1,0 +1,50 @@
+version: "3.6"
+services:
+  docblock-postgres:
+    container_name: docblock-postgres
+    image: postgres:13.0-alpine
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+  docblock-hasura:
+    container_name: docblock-hasura
+    image: hasura/graphql-engine:v2.19.0-ce.cli-migrations-v3
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "docblock-postgres"
+    restart: always
+    volumes:
+      - ./hasura/migrations:/hasura-migrations
+      - ./hasura/metadata:/hasura-metadata
+    healthcheck:
+      test: "curl -f http://localhost:8080/healthz"
+    environment:
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_LOG_LEVEL: error
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, query-log
+      HASURA_GRAPHQL_ADMIN_SECRET: admin_secret
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@docblock-postgres:5432/postgres
+      HASURA_GRAPHQL_JWT_SECRET: '{ "type": "HS256", "key": "=0270fc24c8e74e07c0c29f0303079e4b" }'
+
+  docblock-nextjs:
+    build:
+      context: ./nextjs
+      target: runner
+    healthcheck:
+      test: "curl -f http://localhost:3050"
+    depends_on:
+      - docblock-hasura
+    volumes:
+      - ./nextjs:/app
+      # - ./nextjs/node_modules
+    ports:
+      - "3050:3050"
+    environment:
+      NODE_ENV: development
+
+volumes:
+  db_data:

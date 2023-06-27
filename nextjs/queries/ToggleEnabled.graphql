@@ -1,0 +1,8 @@
+mutation ToggleEnabled($guidanceID: uuid!, $state: Boolean) {
+  update_guidance_by_pk(
+    pk_columns: { id: $guidanceID }
+    _set: { is_enabled: $state }
+  ) {
+    id
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "docblock",
+  "version": "1.0.0",
+  "description": "docblock",
+  "scripts": {
+    "dev": "yarn --cwd ./nextjs install && docker-compose up",
+    "dev:reset": "sh docker-reset.sh && docker-compose up --build --remove-orphans --force-recreate",
+    "database": "docker-compose up docblock-postgres docblock-hasura"
+  },
+  "author": "Me",
+  "license": "Commercial",
+  "dependencies": {
+    "@types/react-beautiful-dnd": "^13.1.4",
+    "prop-types": "^15.8.1",
+    "use-session-storage-state": "^18.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.0"
+  }
+}

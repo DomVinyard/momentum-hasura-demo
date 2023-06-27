@@ -1,0 +1,21 @@
+mutation AddDocument(
+  $ownerID: uuid!
+  $prompt: String
+  $title: String
+  $template: jsonb
+) {
+  insert_documents_one(
+    object: {
+      prompt: $prompt
+      owner_id: $ownerID
+      title: $title
+      template: $template
+    }
+  ) {
+    id
+    blocks {
+      id
+      prompt
+    }
+  }
+}

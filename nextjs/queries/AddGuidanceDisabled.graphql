@@ -1,0 +1,5 @@
+mutation AddGuidanceDisabled($guidance: [guidance_insert_input!]!) {
+  insert_guidance(objects: $guidance) {
+    affected_rows
+  }
+}

@@ -1,0 +1,8 @@
+mutation UpdateBlockOutput($blockID: uuid!, $updatedOutput: String!) {
+  update_blocks(
+    where: { id: { _eq: $blockID } }
+    _set: { output: $updatedOutput }
+  ) {
+    affected_rows
+  }
+}

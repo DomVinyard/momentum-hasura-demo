@@ -1,0 +1,11 @@
+mutation UpdateDocumentSummary($documentID: uuid!, $summary: String!) {
+  update_documents_by_pk(
+    pk_columns: { id: $documentID }
+    _set: { summary: $summary }
+  ) {
+    id
+    prompt
+    title
+    summary
+  }
+}

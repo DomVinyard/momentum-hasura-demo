@@ -1,0 +1,5 @@
+mutation DeleteBlock($blockID: uuid!) {
+  delete_blocks_by_pk(id: $blockID) {
+    id
+  }
+}

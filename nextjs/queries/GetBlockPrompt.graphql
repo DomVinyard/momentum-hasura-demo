@@ -1,0 +1,10 @@
+query GetBlockPrompt($blockID: uuid!) {
+  blocks_by_pk(id: $blockID) {
+    id
+    prompt
+    document {
+      id
+      prompt
+    }
+  }
+}

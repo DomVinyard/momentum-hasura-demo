@@ -1,0 +1,5 @@
+mutation UpdateBlockIndex($blockID: uuid!, $index: Int!) {
+  update_blocks(where: { id: { _eq: $blockID } }, _set: { index: $index }) {
+    affected_rows
+  }
+}

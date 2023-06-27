@@ -1,0 +1,18 @@
+mutation UpdateBlockLength($blockID: uuid!, $newLength: String!) {
+  delete_guidance(
+    where: { type: { _eq: "BLOCK_LENGTH" }, parent_id: { _eq: $blockID } }
+  ) {
+    affected_rows
+  }
+  insert_guidance(
+    objects: {
+      is_enabled: true
+      parent_id: $blockID
+      prompt: $newLength
+      type: "BLOCK_LENGTH"
+    }
+    on_conflict: { update_columns: [prompt], constraint: guidance_pkey }
+  ) {
+    affected_rows
+  }
+}

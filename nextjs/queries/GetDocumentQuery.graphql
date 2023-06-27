@@ -1,0 +1,31 @@
+query GetDocumentSingle($documentID: uuid!) {
+  documents_by_pk(id: $documentID) {
+    id
+    prompt
+    title
+    is_public
+    summary
+    template
+    guidance {
+      id
+      is_enabled
+      prompt
+      type
+    }
+    blocks(order_by: { created_at: asc }) {
+      id
+      prompt
+      created_at
+      output
+      metadata
+      status
+      index
+      type
+      guidance_aggregate(where: { is_enabled: { _eq: true } }) {
+        aggregate {
+          count
+        }
+      }
+    }
+  }
+}

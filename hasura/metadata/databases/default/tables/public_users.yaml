@@ -1,0 +1,43 @@
+table:
+  name: users
+  schema: public
+array_relationships:
+  - name: accounts
+    using:
+      manual_configuration:
+        column_mapping:
+          id: userId
+        insertion_order: null
+        remote_table:
+          name: accounts
+          schema: public
+  - name: documents
+    using:
+      manual_configuration:
+        column_mapping:
+          id: owner_id
+        insertion_order: null
+        remote_table:
+          name: documents
+          schema: public
+  - name: sessions
+    using:
+      manual_configuration:
+        column_mapping:
+          id: userId
+        insertion_order: null
+        remote_table:
+          name: sessions
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - email
+        - image
+        - name
+        - emailVerified
+        - id
+      filter:
+        id:
+          _eq: X-Hasura-User-Id

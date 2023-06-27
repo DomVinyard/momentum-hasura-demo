@@ -1,0 +1,35 @@
+table:
+  name: accounts
+  schema: public
+object_relationships:
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          userId: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - expires_at
+        - refresh_token_expires_in
+        - access_token
+        - id_token
+        - oauth_token
+        - oauth_token_secret
+        - provider
+        - providerAccountId
+        - refresh_token
+        - scope
+        - session_state
+        - token_type
+        - type
+        - id
+        - userId
+      filter:
+        userId:
+          _eq: X-Hasura-User-Id

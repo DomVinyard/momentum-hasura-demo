@@ -1,0 +1,24 @@
+mutation BlockPostRegenerate(
+  $blockID: uuid!
+  $updatedOutput: String!
+  $generationTS: timestamptz!
+  $status: String!
+) {
+  update_blocks(
+    where: {
+      id: { _eq: $blockID }
+      generated_at: { _eq: $generationTS }
+      status: { _eq: "GENERATING" }
+    }
+    _set: {
+      status: $status
+      output: $updatedOutput
+      generated_at: $generationTS
+    }
+  ) {
+    affected_rows
+    returning {
+      id
+    }
+  }
+}

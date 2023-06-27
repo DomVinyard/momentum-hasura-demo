@@ -1,0 +1,7 @@
+- "!include public_accounts.yaml"
+- "!include public_blocks.yaml"
+- "!include public_documents.yaml"
+- "!include public_guidance.yaml"
+- "!include public_sessions.yaml"
+- "!include public_users.yaml"
+- "!include public_verification_tokens.yaml"
