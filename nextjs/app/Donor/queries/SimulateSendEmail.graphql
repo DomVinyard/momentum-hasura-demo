@@ -1,0 +1,3 @@
+mutation SimulateSendEmail {
+  simulateSendEmail(to: "i@dom.vin", subject: "Hi Dom")
+}

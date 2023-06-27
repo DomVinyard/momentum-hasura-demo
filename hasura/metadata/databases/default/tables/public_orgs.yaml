@@ -20,6 +20,12 @@ array_relationships:
         remote_table:
           name: portfolios
           schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - name
 select_permissions:
   - role: user
     permission:

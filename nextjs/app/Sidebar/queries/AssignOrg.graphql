@@ -1,0 +1,5 @@
+mutation AssignOrg($userID: uuid!, $orgID: uuid!) {
+  insert_org_memberships_one(object: { org_id: $orgID, user_id: $userID }) {
+    id
+  }
+}

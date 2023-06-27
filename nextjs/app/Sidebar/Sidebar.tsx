@@ -7,6 +7,7 @@ import {
   Box,
   Spinner,
   useDisclosure,
+  Center,
 } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -15,7 +16,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { BiAddToQueue, BiCommentAdd } from "react-icons/bi";
 import NewDocumentModal from "./components/NewPortfolioModal";
-import { useGetPortfoliosQuery } from "../../generated/graphql";
+import {
+  useAssignOrgMutation,
+  useCreateOrgMutation,
+  useGetPortfoliosQuery,
+} from "../../generated/graphql";
 
 export default function Header() {
   const router = useRouter();
@@ -31,6 +36,10 @@ export default function Header() {
     variables: { ownerID: session?.user?.id },
   });
   const [isLoading, setLoading] = useState(router.query.state === "newdoc");
+  const [createOrg] = useCreateOrgMutation();
+  const [assignOrg] = useAssignOrgMutation({
+    refetchQueries: ["GetPortfolios"],
+  });
 
   const getLoading = () => {
     const isNewdoc = router.query.state === "newdoc";
@@ -46,6 +55,30 @@ export default function Header() {
     );
   };
   const org = data?.users_by_pk?.orgs?.[0]?.org;
+  if (!loading && !org) {
+    return (
+      <Center pt={32} flexDir={"column"} w={"100vw"}>
+        <Text>No org found</Text>
+        <Button
+          onClick={async () => {
+            const orgName = prompt("Enter org name");
+            if (!orgName) return;
+            const newOrg = await createOrg({
+              variables: { name: orgName },
+            });
+            const newOrgID = newOrg.data?.insert_orgs_one?.id;
+            await assignOrg({
+              variables: { orgID: newOrgID, userID: session?.user?.id },
+            });
+          }}
+          mt={8}
+          colorScheme="blue"
+        >
+          Create Org
+        </Button>
+      </Center>
+    );
+  }
   return (
     <Stack
       w={280}

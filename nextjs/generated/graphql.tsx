@@ -856,6 +856,7 @@ export type Mutation_Root = {
   insert_verification_tokens?: Maybe<Verification_Tokens_Mutation_Response>;
   /** insert a single row into the table: "verification_tokens" */
   insert_verification_tokens_one?: Maybe<Verification_Tokens>;
+  simulateSendEmail: Scalars["String"];
   /** update data of the table: "accounts" */
   update_accounts?: Maybe<Accounts_Mutation_Response>;
   /** update single row of the table: "accounts" */
@@ -1084,6 +1085,12 @@ export type Mutation_RootInsert_Verification_TokensArgs = {
 export type Mutation_RootInsert_Verification_Tokens_OneArgs = {
   object: Verification_Tokens_Insert_Input;
   on_conflict?: InputMaybe<Verification_Tokens_On_Conflict>;
+};
+
+/** mutation root */
+export type Mutation_RootSimulateSendEmailArgs = {
+  subject?: InputMaybe<Scalars["String"]>;
+  to?: InputMaybe<Scalars["String"]>;
 };
 
 /** mutation root */
@@ -2976,6 +2983,15 @@ export type Verification_Tokens_Updates = {
   where: Verification_Tokens_Bool_Exp;
 };
 
+export type SimulateSendEmailMutationVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type SimulateSendEmailMutation = {
+  __typename?: "mutation_root";
+  simulateSendEmail: string;
+};
+
 export type DeletePortfolioMutationVariables = Exact<{
   portfolioID: Scalars["uuid"];
 }>;
@@ -3011,6 +3027,27 @@ export type AddPortfolioMutation = {
   insert_portfolios_one?: { __typename?: "portfolios"; id: any } | undefined;
 };
 
+export type AssignOrgMutationVariables = Exact<{
+  userID: Scalars["uuid"];
+  orgID: Scalars["uuid"];
+}>;
+
+export type AssignOrgMutation = {
+  __typename?: "mutation_root";
+  insert_org_memberships_one?:
+    | { __typename?: "org_memberships"; id: any }
+    | undefined;
+};
+
+export type CreateOrgMutationVariables = Exact<{
+  name: Scalars["String"];
+}>;
+
+export type CreateOrgMutation = {
+  __typename?: "mutation_root";
+  insert_orgs_one?: { __typename?: "orgs"; id: any } | undefined;
+};
+
 export type GetPortfoliosQueryVariables = Exact<{
   ownerID: Scalars["uuid"];
 }>;
@@ -3042,6 +3079,72 @@ export type GetPortfoliosQuery = {
     | undefined;
 };
 
+export const SimulateSendEmailDocument = gql`
+  mutation SimulateSendEmail {
+    simulateSendEmail(to: "i@dom.vin", subject: "Hi Dom")
+  }
+`;
+export type SimulateSendEmailMutationFn = Apollo.MutationFunction<
+  SimulateSendEmailMutation,
+  SimulateSendEmailMutationVariables
+>;
+export type SimulateSendEmailComponentProps = Omit<
+  ApolloReactComponents.MutationComponentOptions<
+    SimulateSendEmailMutation,
+    SimulateSendEmailMutationVariables
+  >,
+  "mutation"
+>;
+
+export const SimulateSendEmailComponent = (
+  props: SimulateSendEmailComponentProps
+) => (
+  <ApolloReactComponents.Mutation<
+    SimulateSendEmailMutation,
+    SimulateSendEmailMutationVariables
+  >
+    mutation={SimulateSendEmailDocument}
+    {...props}
+  />
+);
+
+/**
+ * __useSimulateSendEmailMutation__
+ *
+ * To run a mutation, you first call `useSimulateSendEmailMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSimulateSendEmailMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [simulateSendEmailMutation, { data, loading, error }] = useSimulateSendEmailMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSimulateSendEmailMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    SimulateSendEmailMutation,
+    SimulateSendEmailMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    SimulateSendEmailMutation,
+    SimulateSendEmailMutationVariables
+  >(SimulateSendEmailDocument, options);
+}
+export type SimulateSendEmailMutationHookResult = ReturnType<
+  typeof useSimulateSendEmailMutation
+>;
+export type SimulateSendEmailMutationResult =
+  Apollo.MutationResult<SimulateSendEmailMutation>;
+export type SimulateSendEmailMutationOptions = Apollo.BaseMutationOptions<
+  SimulateSendEmailMutation,
+  SimulateSendEmailMutationVariables
+>;
 export const DeletePortfolioDocument = gql`
   mutation DeletePortfolio($portfolioID: uuid!) {
     delete_portfolios_by_pk(id: $portfolioID) {
@@ -3259,6 +3362,133 @@ export type AddPortfolioMutationResult =
 export type AddPortfolioMutationOptions = Apollo.BaseMutationOptions<
   AddPortfolioMutation,
   AddPortfolioMutationVariables
+>;
+export const AssignOrgDocument = gql`
+  mutation AssignOrg($userID: uuid!, $orgID: uuid!) {
+    insert_org_memberships_one(object: { org_id: $orgID, user_id: $userID }) {
+      id
+    }
+  }
+`;
+export type AssignOrgMutationFn = Apollo.MutationFunction<
+  AssignOrgMutation,
+  AssignOrgMutationVariables
+>;
+export type AssignOrgComponentProps = Omit<
+  ApolloReactComponents.MutationComponentOptions<
+    AssignOrgMutation,
+    AssignOrgMutationVariables
+  >,
+  "mutation"
+>;
+
+export const AssignOrgComponent = (props: AssignOrgComponentProps) => (
+  <ApolloReactComponents.Mutation<AssignOrgMutation, AssignOrgMutationVariables>
+    mutation={AssignOrgDocument}
+    {...props}
+  />
+);
+
+/**
+ * __useAssignOrgMutation__
+ *
+ * To run a mutation, you first call `useAssignOrgMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAssignOrgMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [assignOrgMutation, { data, loading, error }] = useAssignOrgMutation({
+ *   variables: {
+ *      userID: // value for 'userID'
+ *      orgID: // value for 'orgID'
+ *   },
+ * });
+ */
+export function useAssignOrgMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AssignOrgMutation,
+    AssignOrgMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<AssignOrgMutation, AssignOrgMutationVariables>(
+    AssignOrgDocument,
+    options
+  );
+}
+export type AssignOrgMutationHookResult = ReturnType<
+  typeof useAssignOrgMutation
+>;
+export type AssignOrgMutationResult = Apollo.MutationResult<AssignOrgMutation>;
+export type AssignOrgMutationOptions = Apollo.BaseMutationOptions<
+  AssignOrgMutation,
+  AssignOrgMutationVariables
+>;
+export const CreateOrgDocument = gql`
+  mutation CreateOrg($name: String!) {
+    insert_orgs_one(object: { name: $name }) {
+      id
+    }
+  }
+`;
+export type CreateOrgMutationFn = Apollo.MutationFunction<
+  CreateOrgMutation,
+  CreateOrgMutationVariables
+>;
+export type CreateOrgComponentProps = Omit<
+  ApolloReactComponents.MutationComponentOptions<
+    CreateOrgMutation,
+    CreateOrgMutationVariables
+  >,
+  "mutation"
+>;
+
+export const CreateOrgComponent = (props: CreateOrgComponentProps) => (
+  <ApolloReactComponents.Mutation<CreateOrgMutation, CreateOrgMutationVariables>
+    mutation={CreateOrgDocument}
+    {...props}
+  />
+);
+
+/**
+ * __useCreateOrgMutation__
+ *
+ * To run a mutation, you first call `useCreateOrgMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOrgMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOrgMutation, { data, loading, error }] = useCreateOrgMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useCreateOrgMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateOrgMutation,
+    CreateOrgMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<CreateOrgMutation, CreateOrgMutationVariables>(
+    CreateOrgDocument,
+    options
+  );
+}
+export type CreateOrgMutationHookResult = ReturnType<
+  typeof useCreateOrgMutation
+>;
+export type CreateOrgMutationResult = Apollo.MutationResult<CreateOrgMutation>;
+export type CreateOrgMutationOptions = Apollo.BaseMutationOptions<
+  CreateOrgMutation,
+  CreateOrgMutationVariables
 >;
 export const GetPortfoliosDocument = gql`
   query GetPortfolios($ownerID: uuid!) {
@@ -4564,6 +4794,12 @@ export type Mutation_RootResolvers<
     ParentType,
     ContextType,
     RequireFields<Mutation_RootInsert_Verification_Tokens_OneArgs, "object">
+  >;
+  simulateSendEmail?: Resolver<
+    ResolversTypes["String"],
+    ParentType,
+    ContextType,
+    Partial<Mutation_RootSimulateSendEmailArgs>
   >;
   update_accounts?: Resolver<
     Maybe<ResolversTypes["accounts_mutation_response"]>,
