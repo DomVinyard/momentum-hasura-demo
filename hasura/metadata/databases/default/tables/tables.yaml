@@ -1,5 +1,5 @@
 - "!include public_accounts.yaml"
-- "!include public_donors.yaml"
+- "!include public_donor_info.yaml"
 - "!include public_org_memberships.yaml"
 - "!include public_orgs.yaml"
 - "!include public_portfolios.yaml"

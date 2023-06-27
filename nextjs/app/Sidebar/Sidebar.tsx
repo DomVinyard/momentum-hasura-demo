@@ -9,7 +9,7 @@ import {
   useDisclosure,
   Center,
 } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import HamburgerMenu from "./components/HamburgerMenu";
 import { useRouter } from "next/router";
@@ -55,6 +55,9 @@ export default function Header() {
     );
   };
   const org = data?.users_by_pk?.orgs?.[0]?.org;
+  if (!loading && !data?.users_by_pk?.name) {
+    return signOut();
+  }
   if (!loading && !org) {
     return (
       <Center pt={32} flexDir={"column"} w={"100vw"}>
@@ -79,6 +82,7 @@ export default function Header() {
       </Center>
     );
   }
+  const isUnassigned = "unassigned" === router.query.id;
   return (
     <Stack
       w={280}
@@ -102,6 +106,26 @@ export default function Header() {
           <BiAddToQueue size={"18px"} />
         </Button>
       </Flex>
+      <Heading pt={10} color="#555" fontSize={"xs"}>
+        Donors
+      </Heading>
+      <Link href={`/portfolio/unassigned`}>
+        <Box
+          px={3}
+          pt={2}
+          pb={1}
+          borderRadius={"10px"}
+          bg={isUnassigned ? "#EBFBFF" : "#FFFFFF"}
+          border={isUnassigned ? "1px solid #00C2FF" : "1px solid #fff"}
+        >
+          <Stack spacing={1}>
+            <Text fontSize={"sm"}>Unassigned</Text>
+            <Flex alignItems={"center"} justifyContent={"space-between"}>
+              <Flex alignItems={"center"}></Flex>
+            </Flex>
+          </Stack>
+        </Box>
+      </Link>
       <Heading pt={10} color="#555" fontSize={"xs"}>
         Portfolios
       </Heading>

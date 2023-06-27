@@ -3,8 +3,11 @@ query GetPortfolio($portfolioID: uuid!) {
     id
     name
     members {
-      id
-      name
+      donor {
+        id
+        name
+        avatar
+      }
     }
   }
 }

@@ -1,9 +1,7 @@
 import fetch from "node-fetch";
-import { ApolloServer } from "apollo-server-lambda";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-import { loadSchemaSync } from "@graphql-tools/load";
-import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
-import { join } from "node:path";
+import { ApolloServer } from "@apollo/server";
+import { startServerAndCreateNextHandler } from "@as-integrations/next";
+import { gql } from "graphql-tag";
 
 const resolvers = {
   Query: {
@@ -30,16 +28,24 @@ const resolvers = {
   },
 };
 
-const loaders = [new GraphQLFileLoader()];
-const typeDefs = loadSchemaSync(join(__dirname, "typeDefs.gql"), { loaders });
+const typeDefs = gql`
+  type Donor {
+    id: String!
+    name: String!
+    avatar: String!
+    uuid: ID!
+  }
+  type Query {
+    donor(id: String): Donor
+    donors: [Donor]
+  }
+`;
+
 const server = new ApolloServer({
-  typeDefs,
   resolvers,
+  typeDefs,
   csrfPrevention: true,
   cache: "bounded",
   introspection: true,
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
-
-const cors = { origin: "*", credentials: true };
-exports.graphqlHandler = server.createHandler({ cors } as any);
+export default startServerAndCreateNextHandler(server);

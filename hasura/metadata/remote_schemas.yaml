@@ -1,1 +1,18 @@
-[]
+- name: mockAPI
+  definition:
+    url: '{{BACKEND_URI}}/crm/mockAPI'
+    timeout_seconds: 60
+    customization: {}
+  remote_relationships:
+    - relationships:
+        - definition:
+            to_source:
+              field_mapping:
+                id: crm_id
+              relationship_type: object
+              source: default
+              table:
+                name: donor_info
+                schema: public
+          name: info
+      type_name: Donor

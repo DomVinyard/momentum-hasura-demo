@@ -1,0 +1,10 @@
+query GetUnassigned {
+  donors {
+    id
+    name
+    avatar
+    info {
+      portfolio_id
+    }
+  }
+}
