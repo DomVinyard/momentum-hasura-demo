@@ -1,7 +1,12 @@
+import Portfolio from "../../app/Portfolio/Portfolio";
 import Layout from "../../app/_Global/_Layout";
 
-const DocumentPage = () => {
-  return <Layout>my portfolio</Layout>;
+const PortfolioPage = () => {
+  return (
+    <Layout>
+      <Portfolio />
+    </Layout>
+  );
 };
 
-export default DocumentPage;
+export default PortfolioPage;

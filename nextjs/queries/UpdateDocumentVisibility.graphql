@@ -1,8 +1,0 @@
-mutation UpdateDocumentVisibility($documentID: uuid!, $visible: Boolean!) {
-  update_documents_by_pk(
-    pk_columns: { id: $documentID }
-    _set: { is_public: $visible }
-  ) {
-    id
-  }
-}

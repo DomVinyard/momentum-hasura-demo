@@ -1,0 +1,5 @@
+mutation DeletePortfolio($portfolioID: uuid!) {
+  delete_portfolios_by_pk(id: $portfolioID) {
+    id
+  }
+}

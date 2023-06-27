@@ -1,35 +1,6 @@
 table:
   name: guidance
   schema: public
-object_relationships:
-  - name: block
-    using:
-      manual_configuration:
-        column_mapping:
-          parent_id: id
-        insertion_order: null
-        remote_table:
-          name: blocks
-          schema: public
-  - name: document
-    using:
-      manual_configuration:
-        column_mapping:
-          parent_id: id
-        insertion_order: null
-        remote_table:
-          name: documents
-          schema: public
-insert_permissions:
-  - role: user
-    permission:
-      check: {}
-      columns:
-        - id
-        - is_enabled
-        - parent_id
-        - prompt
-        - type
 select_permissions:
   - role: user
     permission:
@@ -42,26 +13,3 @@ select_permissions:
         - type
       filter: {}
       allow_aggregations: true
-update_permissions:
-  - role: user
-    permission:
-      columns:
-        - id
-        - is_enabled
-        - parent_id
-        - prompt
-        - type
-      filter: {}
-      check: null
-delete_permissions:
-  - role: user
-    permission:
-      filter:
-        _or:
-          - block:
-              document:
-                owner_id:
-                  _eq: X-Hasura-User-Id
-          - document:
-              owner_id:
-                _eq: X-Hasura-User-Id

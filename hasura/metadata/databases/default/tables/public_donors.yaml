@@ -1,0 +1,26 @@
+table:
+  name: donors
+  schema: public
+object_relationships:
+  - name: portfolio
+    using:
+      manual_configuration:
+        column_mapping:
+          portfolio_id: id
+        insertion_order: null
+        remote_table:
+          name: portfolios
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - name
+        - id
+        - portfolio_id
+      filter:
+        portfolio:
+          org:
+            members:
+              user_id:
+                _eq: X-Hasura-User-Id

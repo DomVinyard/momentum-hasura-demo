@@ -1,5 +1,0 @@
-mutation AddGuidance($prompt: String!, $parentID: uuid!) {
-  insert_guidance_one(object: { prompt: $prompt, parent_id: $parentID }) {
-    id
-  }
-}

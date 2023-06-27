@@ -1,8 +1,0 @@
-mutation UpdateSuggestions($documentID: uuid!, $suggestions: jsonb) {
-  update_documents_by_pk(
-    pk_columns: { id: $documentID }
-    _set: { metadata: { suggestions: $suggestions } }
-  ) {
-    id
-  }
-}

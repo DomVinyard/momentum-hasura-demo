@@ -1,5 +1,0 @@
-mutation UpdateBlockIndexMany($updates: [blocks_updates!]!) {
-  update_blocks_many(updates: $updates) {
-    affected_rows
-  }
-}

@@ -1,8 +1,0 @@
-mutation UpdateBlock($blockID: uuid!, $updatedPrompt: String!) {
-  update_blocks(
-    where: { id: { _eq: $blockID } }
-    _set: { prompt: $updatedPrompt }
-  ) {
-    affected_rows
-  }
-}

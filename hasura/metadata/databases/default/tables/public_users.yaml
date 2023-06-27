@@ -11,14 +11,14 @@ array_relationships:
         remote_table:
           name: accounts
           schema: public
-  - name: documents
+  - name: orgs
     using:
       manual_configuration:
         column_mapping:
-          id: owner_id
+          id: user_id
         insertion_order: null
         remote_table:
-          name: documents
+          name: org_memberships
           schema: public
   - name: sessions
     using:

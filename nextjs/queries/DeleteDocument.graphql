@@ -1,5 +1,0 @@
-mutation DeleteDocument($documentID: uuid!) {
-  delete_documents_by_pk(id: $documentID) {
-    id
-  }
-}

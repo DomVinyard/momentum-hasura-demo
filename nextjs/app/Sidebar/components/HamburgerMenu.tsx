@@ -12,20 +12,21 @@ import { BiChevronDown, BiLogOut } from "react-icons/bi";
 import { signOut, useSession } from "next-auth/react";
 
 interface HamburgerMenuProps {
+  org?: string;
   menuItems?: Array<{
     label: string;
     onClick: () => void;
   }>;
 }
 
-const HamburgerMenu: React.FC<HamburgerMenuProps> = () => {
+const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ org }) => {
   const { data: session } = useSession();
   return (
     <Box>
       <Menu>
         <MenuButton aria-label="Options">
           <Flex alignItems={"center"}>
-            <Text fontWeight={"bold"}>{session?.user?.name}</Text>
+            <Text fontWeight={"bold"}>{org || session?.user?.name}</Text>
             <BiChevronDown />
           </Flex>
         </MenuButton>

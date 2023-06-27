@@ -1,0 +1,32 @@
+table:
+  name: orgs
+  schema: public
+array_relationships:
+  - name: members
+    using:
+      manual_configuration:
+        column_mapping:
+          id: org_id
+        insertion_order: null
+        remote_table:
+          name: org_memberships
+          schema: public
+  - name: portfolios
+    using:
+      manual_configuration:
+        column_mapping:
+          id: org_id
+        insertion_order: null
+        remote_table:
+          name: portfolios
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+      filter:
+        members:
+          user_id:
+            _eq: X-Hasura-User-Id

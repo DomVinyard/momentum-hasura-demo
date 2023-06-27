@@ -1,5 +1,0 @@
-mutation DeleteGuidance($guidanceID: uuid!) {
-  delete_guidance_by_pk(id: $guidanceID) {
-    id
-  }
-}

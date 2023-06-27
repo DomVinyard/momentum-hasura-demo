@@ -1,8 +1,0 @@
-mutation ToggleOverwrite($blockID: uuid!, $isOverwrite: Boolean) {
-  update_blocks_by_pk(
-    pk_columns: { id: $blockID }
-    _set: { is_manual_overwrite: $isOverwrite }
-  ) {
-    id
-  }
-}

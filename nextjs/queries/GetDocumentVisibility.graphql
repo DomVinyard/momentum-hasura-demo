@@ -1,5 +1,0 @@
-query GetDocumentVisibility($id: uuid!) {
-  documents_by_pk(id: $id) {
-    is_public
-  }
-}

@@ -1,6 +1,5 @@
-import { Box, Center } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import DocumentLoadingSkeleton from "../app/DocumentEdit/components/DocumentLoadingSkeleton";
 import Layout from "../app/_Global/_Layout";
 
 export default function Index({ initialApolloState }: any) {

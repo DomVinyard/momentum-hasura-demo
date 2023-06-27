@@ -6,7 +6,7 @@ import { useApollo } from "../lib/apollo";
 import { ApolloProvider } from "@apollo/client/react";
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import Public from "../app/Public/Public";
+import Public from "../app/_Global/Public";
 import Hotjar from "@hotjar/browser";
 import { useEffect } from "react";
 

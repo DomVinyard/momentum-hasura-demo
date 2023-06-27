@@ -1,0 +1,10 @@
+query GetPortfolio($portfolioID: uuid!) {
+  portfolios_by_pk(id: $portfolioID) {
+    id
+    name
+    members {
+      id
+      name
+    }
+  }
+}

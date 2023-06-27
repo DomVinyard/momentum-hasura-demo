@@ -29,6 +29,7 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: admin_secret
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@momentum-demo-postgres:5432/postgres
       HASURA_GRAPHQL_JWT_SECRET: '{ "type": "HS256", "key": "=0270fc24c8e74e07c0c29f0303079e4b" }'
+      BACKEND_URI: http://momentum-demo-nextjs:3000/api
 
   momentum-demo-nextjs:
     build:
