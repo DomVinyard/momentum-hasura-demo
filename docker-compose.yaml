@@ -1,20 +1,20 @@
 version: "3.6"
 services:
-  docblock-postgres:
-    container_name: docblock-postgres
+  momentum-demo-postgres:
+    container_name: momentum-demo-postgres
     image: postgres:13.0-alpine
     restart: always
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgrespassword
-  docblock-hasura:
-    container_name: docblock-hasura
+  momentum-demo-hasura:
+    container_name: momentum-demo-hasura
     image: hasura/graphql-engine:v2.19.0-ce.cli-migrations-v3
     ports:
       - "8080:8080"
     depends_on:
-      - "docblock-postgres"
+      - "momentum-demo-postgres"
     restart: always
     volumes:
       - ./hasura/migrations:/hasura-migrations
@@ -27,22 +27,22 @@ services:
       HASURA_GRAPHQL_LOG_LEVEL: error
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, query-log
       HASURA_GRAPHQL_ADMIN_SECRET: admin_secret
-      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@docblock-postgres:5432/postgres
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@momentum-demo-postgres:5432/postgres
       HASURA_GRAPHQL_JWT_SECRET: '{ "type": "HS256", "key": "=0270fc24c8e74e07c0c29f0303079e4b" }'
 
-  docblock-nextjs:
+  momentum-demo-nextjs:
     build:
       context: ./nextjs
       target: runner
     healthcheck:
-      test: "curl -f http://localhost:3050"
+      test: "curl -f http://localhost:3000"
     depends_on:
-      - docblock-hasura
+      - momentum-demo-hasura
     volumes:
       - ./nextjs:/app
       # - ./nextjs/node_modules
     ports:
-      - "3050:3050"
+      - "3000:3000"
     environment:
       NODE_ENV: development
 

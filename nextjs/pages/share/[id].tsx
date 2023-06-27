@@ -66,7 +66,7 @@ const SharedDocument = (props: any) => {
       <Box pt={24}>
         <Center>
           <Text fontSize="m" color="gray.500">
-            Created with ❤️ and 🤖 using DocBlock
+            Created with ❤️ and 🤖 using momentum-demo
           </Text>
         </Center>
       </Box>

@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "💣 Resetting DB..."
-containers=$(docker ps -qa -f="name=docblock")
+containers=$(docker ps -qa -f="name=momentum-demo")
 if [ ! -z "$containers" ]
 then
     echo "Stopping containers..."
@@ -10,7 +10,7 @@ then
 else
     echo "No containers found"
 fi
-repos=("docblock-postgres" "docblock-hasura" "hasura/graphql-engine" "docblock-nextjs" "docblock-worker")
+repos=("momentum-demo-postgres" "momentum-demo-hasura" "hasura/graphql-engine" "momentum-demo-nextjs" "momentum-demo-worker")
 for i in "${repos[@]}"
 do
     images=$(docker images -qa $i)

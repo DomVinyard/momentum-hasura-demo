@@ -90,37 +90,15 @@ export default function NewDocumentModal({ isOpen, onClose, setLoading }: any) {
         >
           <ModalCloseButton />
           <Stack p={8}>
-            <Heading fontSize={"2xl"}>New Document</Heading>
-            <Text>
-              Create a new document by providing a template and a topic. You can
-              always change these later.
-            </Text>
-            <Box pt={4}>
-              <Select
-                onChange={(e) => {
-                  setSelectedTemplate(
-                    templates?.find(({ id }) => id === e.target.value)
-                  );
-                }}
-              >
-                {templates.map((template) => (
-                  <option
-                    selected={template.id === selectedTemplate?.id}
-                    value={template.id}
-                  >
-                    {template.title}
-                  </option>
-                ))}
-              </Select>
-            </Box>
+            <Heading fontSize={"2xl"}>Add Portfolio</Heading>
+            <Text>What do you want to call your portfolio?</Text>
             <Input
-              placeholder={`E.g. ${selectedTemplate?.placeholder}...`}
+              placeholder={`My Portfolio...`}
               value={prompt}
               onChange={(e) => {
                 setPrompt(e.target.value);
               }}
             />
-            {/* <Button onClick={addNew}>Create</Button> */}
           </Stack>
           <ModalFooter>
             <Button type="submit" colorScheme="blue">

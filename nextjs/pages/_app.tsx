@@ -25,7 +25,6 @@ const theme = extendTheme({
 const initHotjar = () => {
   const siteId = 3512142;
   const hotjarVersion = 6;
-
   Hotjar.init(siteId, hotjarVersion, {
     debug: true,
   });

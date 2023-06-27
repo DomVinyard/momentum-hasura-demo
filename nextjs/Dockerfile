@@ -52,8 +52,8 @@ RUN adduser --system --uid 1001 nextjs
 
 USER nextjs
 
-EXPOSE 3050
+EXPOSE 3000
 
-ENV PORT 3050
+ENV PORT 3000
 
 CMD ["yarn", "dev"]

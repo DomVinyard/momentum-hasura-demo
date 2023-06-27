@@ -1,16 +1,16 @@
 {
-  "name": "docblock",
+  "name": "momentum-demo",
   "version": "1.0.0",
-  "description": "docblock",
+  "description": "momentum-demo",
   "scripts": {
     "dev": "yarn --cwd ./nextjs install && docker-compose up",
+    "hasura": "cd hasura && hasura console --admin-secret=admin_secret",
     "dev:reset": "sh docker-reset.sh && docker-compose up --build --remove-orphans --force-recreate",
-    "database": "docker-compose up docblock-postgres docblock-hasura"
+    "database": "docker-compose up momentum-demo-postgres momentum-demo-hasura"
   },
   "author": "Me",
   "license": "Commercial",
   "dependencies": {
-    "@types/react-beautiful-dnd": "^13.1.4",
     "prop-types": "^15.8.1",
     "use-session-storage-state": "^18.1.1"
   },

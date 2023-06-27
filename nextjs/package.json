@@ -3,7 +3,7 @@
   "description": "An example project for NextAuth.js with Next.js",
   "scripts": {
     "build": "next build",
-    "dev": "npx concurrently \"next dev -p 3050\" \"yarn graphql:generate --watch\"",
+    "dev": "npx concurrently \"next dev -p 3000\" \"yarn graphql:generate --watch\"",
     "graphql:generate": "npx graphql-codegen --require dotenv/config --config lib/codegen.ts",
     "start": "next start"
   },

@@ -92,12 +92,12 @@ export default function Header() {
         </Button>
       </Flex>
       <Heading pt={10} color="#555" fontSize={"xs"}>
-        Documents
+        Portfolios
       </Heading>
       <Stack>
         {(isLoading || loading) && getLoading()}
         {!data?.users_by_pk?.documents.length && !loading && !isLoading && (
-          <Text fontSize={"sm"}>No documents yet.</Text>
+          <Text fontSize={"sm"}>All Donors</Text>
         )}
         {data?.users_by_pk?.documents.map((doc) => {
           const isSelected = doc.id === router.query.id;

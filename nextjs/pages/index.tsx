@@ -7,17 +7,11 @@ export default function Index({ initialApolloState }: any) {
   const router = useRouter();
   return (
     <>
-      {router.query.state === "newdoc" ? (
-        <Box>
-          <DocumentLoadingSkeleton />
-        </Box>
-      ) : (
-        <Layout>
-          <Center height="70vh" opacity={0.5} mt={{ base: 0, md: "110px" }}>
-            No document selected
-          </Center>
-        </Layout>
-      )}
+      <Layout>
+        <Center height="70vh" opacity={0.5} mt={{ base: 0, md: "110px" }}>
+          No portfolio selected
+        </Center>
+      </Layout>
     </>
   );
 }
