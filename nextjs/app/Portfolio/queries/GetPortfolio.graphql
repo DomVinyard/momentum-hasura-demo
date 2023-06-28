@@ -7,6 +7,9 @@ query GetPortfolio($portfolioID: uuid!) {
         id
         name
         avatar
+        info {
+          id
+        }
       }
     }
   }

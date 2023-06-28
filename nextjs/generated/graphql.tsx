@@ -4,8 +4,8 @@ import {
   GraphQLScalarTypeConfig,
 } from "graphql";
 import { gql } from "@apollo/client";
-import * as Apollo from "@apollo/client";
 import * as React from "react";
+import * as Apollo from "@apollo/client";
 import * as ApolloReactComponents from "@apollo/client/react/components";
 export type Maybe<T> = T | undefined;
 export type InputMaybe<T> = T | undefined;
@@ -3126,6 +3126,34 @@ export type Verification_Tokens_Updates = {
   where: Verification_Tokens_Bool_Exp;
 };
 
+export type GetDonorQueryVariables = Exact<{
+  infoID: Scalars["uuid"];
+}>;
+
+export type GetDonorQuery = {
+  __typename?: "query_root";
+  donor_info_by_pk?:
+    | {
+        __typename?: "donor_info";
+        touches?: number | undefined;
+        donor?:
+          | { __typename?: "Donor"; name: string; id: string; avatar: string }
+          | undefined;
+      }
+    | undefined;
+};
+
+export type IncrementTouchMutationVariables = Exact<{
+  infoID: Scalars["uuid"];
+}>;
+
+export type IncrementTouchMutation = {
+  __typename?: "mutation_root";
+  update_donor_info_by_pk?:
+    | { __typename?: "donor_info"; id: any; touches?: number | undefined }
+    | undefined;
+};
+
 export type SimulateSendEmailMutationVariables = Exact<{
   [key: string]: never;
 }>;
@@ -3133,6 +3161,16 @@ export type SimulateSendEmailMutationVariables = Exact<{
 export type SimulateSendEmailMutation = {
   __typename?: "mutation_root";
   simulateSendEmail: string;
+};
+
+export type AssignToPortfolioMutationVariables = Exact<{
+  portfolioID: Scalars["uuid"];
+  crmID: Scalars["String"];
+}>;
+
+export type AssignToPortfolioMutation = {
+  __typename?: "mutation_root";
+  insert_donor_info_one?: { __typename?: "donor_info"; id: any } | undefined;
 };
 
 export type DeletePortfolioMutationVariables = Exact<{
@@ -3158,7 +3196,13 @@ export type GetPortfolioQuery = {
         members: Array<{
           __typename?: "donor_info";
           donor?:
-            | { __typename?: "Donor"; id: string; name: string; avatar: string }
+            | {
+                __typename?: "Donor";
+                id: string;
+                name: string;
+                avatar: string;
+                info?: { __typename?: "donor_info"; id: any } | undefined;
+              }
             | undefined;
         }>;
       }
@@ -3245,6 +3289,149 @@ export type GetPortfoliosQuery = {
     | undefined;
 };
 
+export const GetDonorDocument = gql`
+  query GetDonor($infoID: uuid!) {
+    donor_info_by_pk(id: $infoID) {
+      touches
+      donor {
+        name
+        id
+        avatar
+      }
+    }
+  }
+`;
+export type GetDonorComponentProps = Omit<
+  ApolloReactComponents.QueryComponentOptions<
+    GetDonorQuery,
+    GetDonorQueryVariables
+  >,
+  "query"
+> &
+  ({ variables: GetDonorQueryVariables; skip?: boolean } | { skip: boolean });
+
+export const GetDonorComponent = (props: GetDonorComponentProps) => (
+  <ApolloReactComponents.Query<GetDonorQuery, GetDonorQueryVariables>
+    query={GetDonorDocument}
+    {...props}
+  />
+);
+
+/**
+ * __useGetDonorQuery__
+ *
+ * To run a query within a React component, call `useGetDonorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDonorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDonorQuery({
+ *   variables: {
+ *      infoID: // value for 'infoID'
+ *   },
+ * });
+ */
+export function useGetDonorQuery(
+  baseOptions: Apollo.QueryHookOptions<GetDonorQuery, GetDonorQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetDonorQuery, GetDonorQueryVariables>(
+    GetDonorDocument,
+    options
+  );
+}
+export function useGetDonorLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetDonorQuery,
+    GetDonorQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetDonorQuery, GetDonorQueryVariables>(
+    GetDonorDocument,
+    options
+  );
+}
+export type GetDonorQueryHookResult = ReturnType<typeof useGetDonorQuery>;
+export type GetDonorLazyQueryHookResult = ReturnType<
+  typeof useGetDonorLazyQuery
+>;
+export type GetDonorQueryResult = Apollo.QueryResult<
+  GetDonorQuery,
+  GetDonorQueryVariables
+>;
+export const IncrementTouchDocument = gql`
+  mutation IncrementTouch($infoID: uuid!) {
+    update_donor_info_by_pk(pk_columns: { id: $infoID }, _inc: { touches: 1 }) {
+      id
+      touches
+    }
+  }
+`;
+export type IncrementTouchMutationFn = Apollo.MutationFunction<
+  IncrementTouchMutation,
+  IncrementTouchMutationVariables
+>;
+export type IncrementTouchComponentProps = Omit<
+  ApolloReactComponents.MutationComponentOptions<
+    IncrementTouchMutation,
+    IncrementTouchMutationVariables
+  >,
+  "mutation"
+>;
+
+export const IncrementTouchComponent = (
+  props: IncrementTouchComponentProps
+) => (
+  <ApolloReactComponents.Mutation<
+    IncrementTouchMutation,
+    IncrementTouchMutationVariables
+  >
+    mutation={IncrementTouchDocument}
+    {...props}
+  />
+);
+
+/**
+ * __useIncrementTouchMutation__
+ *
+ * To run a mutation, you first call `useIncrementTouchMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useIncrementTouchMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [incrementTouchMutation, { data, loading, error }] = useIncrementTouchMutation({
+ *   variables: {
+ *      infoID: // value for 'infoID'
+ *   },
+ * });
+ */
+export function useIncrementTouchMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    IncrementTouchMutation,
+    IncrementTouchMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    IncrementTouchMutation,
+    IncrementTouchMutationVariables
+  >(IncrementTouchDocument, options);
+}
+export type IncrementTouchMutationHookResult = ReturnType<
+  typeof useIncrementTouchMutation
+>;
+export type IncrementTouchMutationResult =
+  Apollo.MutationResult<IncrementTouchMutation>;
+export type IncrementTouchMutationOptions = Apollo.BaseMutationOptions<
+  IncrementTouchMutation,
+  IncrementTouchMutationVariables
+>;
 export const SimulateSendEmailDocument = gql`
   mutation SimulateSendEmail {
     simulateSendEmail(to: "i@dom.vin", subject: "Hi Dom")
@@ -3310,6 +3497,78 @@ export type SimulateSendEmailMutationResult =
 export type SimulateSendEmailMutationOptions = Apollo.BaseMutationOptions<
   SimulateSendEmailMutation,
   SimulateSendEmailMutationVariables
+>;
+export const AssignToPortfolioDocument = gql`
+  mutation AssignToPortfolio($portfolioID: uuid!, $crmID: String!) {
+    insert_donor_info_one(
+      object: { portfolio_id: $portfolioID, crm_id: $crmID }
+    ) {
+      id
+    }
+  }
+`;
+export type AssignToPortfolioMutationFn = Apollo.MutationFunction<
+  AssignToPortfolioMutation,
+  AssignToPortfolioMutationVariables
+>;
+export type AssignToPortfolioComponentProps = Omit<
+  ApolloReactComponents.MutationComponentOptions<
+    AssignToPortfolioMutation,
+    AssignToPortfolioMutationVariables
+  >,
+  "mutation"
+>;
+
+export const AssignToPortfolioComponent = (
+  props: AssignToPortfolioComponentProps
+) => (
+  <ApolloReactComponents.Mutation<
+    AssignToPortfolioMutation,
+    AssignToPortfolioMutationVariables
+  >
+    mutation={AssignToPortfolioDocument}
+    {...props}
+  />
+);
+
+/**
+ * __useAssignToPortfolioMutation__
+ *
+ * To run a mutation, you first call `useAssignToPortfolioMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAssignToPortfolioMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [assignToPortfolioMutation, { data, loading, error }] = useAssignToPortfolioMutation({
+ *   variables: {
+ *      portfolioID: // value for 'portfolioID'
+ *      crmID: // value for 'crmID'
+ *   },
+ * });
+ */
+export function useAssignToPortfolioMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AssignToPortfolioMutation,
+    AssignToPortfolioMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    AssignToPortfolioMutation,
+    AssignToPortfolioMutationVariables
+  >(AssignToPortfolioDocument, options);
+}
+export type AssignToPortfolioMutationHookResult = ReturnType<
+  typeof useAssignToPortfolioMutation
+>;
+export type AssignToPortfolioMutationResult =
+  Apollo.MutationResult<AssignToPortfolioMutation>;
+export type AssignToPortfolioMutationOptions = Apollo.BaseMutationOptions<
+  AssignToPortfolioMutation,
+  AssignToPortfolioMutationVariables
 >;
 export const DeletePortfolioDocument = gql`
   mutation DeletePortfolio($portfolioID: uuid!) {
@@ -3390,6 +3649,9 @@ export const GetPortfolioDocument = gql`
           id
           name
           avatar
+          info {
+            id
+          }
         }
       }
     }

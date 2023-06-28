@@ -1,0 +1,10 @@
+query GetDonor($infoID: uuid!) {
+  donor_info_by_pk(id: $infoID) {
+    touches
+    donor {
+      name
+      id
+      avatar
+    }
+  }
+}
