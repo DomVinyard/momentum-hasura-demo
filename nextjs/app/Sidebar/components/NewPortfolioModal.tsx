@@ -13,19 +13,13 @@ import { useAddPortfolioMutation } from "../../../generated/graphql";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function NewDocumentModal({
-  isOpen,
-  onClose,
-  setLoading,
-  orgID,
-}: any) {
+export default function NewDocumentModal({ isOpen, onClose, orgID }: any) {
   const router = useRouter();
   const [addPortfolio] = useAddPortfolioMutation({
     refetchQueries: ["GetPortfolios"],
   });
   const addNew = async () => {
     onClose();
-    setLoading(true);
     const newPortfolio = await addPortfolio({
       variables: {
         name,
@@ -33,7 +27,6 @@ export default function NewDocumentModal({
       },
     });
     router.push(`/portfolio/${newPortfolio.data?.insert_portfolios_one?.id}`);
-    setLoading(false);
   };
 
   const [name, setName] = useState("");

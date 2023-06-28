@@ -1,15 +1,9 @@
+# Quick Start
 
-# Things to demo
+Ensure Docker is running.
 
-- Basic demo functionality (replicated ticket from trial)
-- Mock CRM
-- Hasura Admin
-  - Super quick GraphQL primer
-  - Add Column
-  - Permissions
-  - Actions
-  - Remote Schema (No Sync required)
-- Code Tour
-  - Hasura 
-  - Docker
-  - NextJS (Replace with Vue)
+- 1. create a `.env` file in the /nextjs directory (sent separately)
+- 2. run `yarn dev` (from root)
+
+To view the Hasura backend console, run `yarn hasura` (from root)
+ 

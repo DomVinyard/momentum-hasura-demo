@@ -1,2 +1,2 @@
-alter table "public"."donor_info" add column "touches" integer
+alter table "public"."donors" add column "touches" integer
  null default '0';

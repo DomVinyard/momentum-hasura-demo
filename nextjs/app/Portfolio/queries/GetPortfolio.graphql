@@ -2,13 +2,15 @@ query GetPortfolio($portfolioID: uuid!) {
   portfolios_by_pk(id: $portfolioID) {
     id
     name
-    members {
-      donor {
+    members(order_by: { touches: asc }) {
+      id
+      crm {
         id
         name
         avatar
-        info {
+        momentum {
           id
+          touches
         }
       }
     }

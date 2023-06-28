@@ -1,1 +1,1 @@
-alter table "public"."donor_info" drop column "name" cascade;
+alter table "public"."donors" drop column "name" cascade;

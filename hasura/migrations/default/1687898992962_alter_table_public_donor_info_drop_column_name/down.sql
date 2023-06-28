@@ -1,2 +1,2 @@
-alter table "public"."donor_info" alter column "name" drop not null;
-alter table "public"."donor_info" add column "name" text;
+alter table "public"."donors" alter column "name" drop not null;
+alter table "public"."donors" add column "name" text;

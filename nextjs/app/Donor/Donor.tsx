@@ -11,22 +11,26 @@ const Donor = () => {
   const { donorID } = router.query;
   const [simulateSendEmail] = useSimulateSendEmailMutation();
   const [incrementTouch] = useIncrementTouchMutation({
-    refetchQueries: ["GetDonor"],
+    refetchQueries: ["GetPortfolio", "GetDonor"],
   });
-  const { data } = useGetDonorQuery({ variables: { infoID: donorID } });
-  const donor = data?.donor_info_by_pk;
+  const { data, loading, error } = useGetDonorQuery({
+    variables: { donorID: donorID },
+  });
+  console.log({ data, error });
+  const donor = data?.donors_by_pk;
+  if (loading) return "Loading...";
   return (
     <Stack>
       <Center>
         <Avatar
           mt={8}
           size="2xl"
-          name={donor?.donor?.name}
-          src={donor?.donor?.avatar}
+          name={donor?.crm?.name}
+          src={donor?.crm?.avatar}
         />
       </Center>
       <Center>
-        <Heading mt={2}>{donor?.donor?.name}</Heading>
+        <Heading mt={2}>{donor?.crm?.name}</Heading>
       </Center>
       <Center>
         <Heading pt={4} size="md">

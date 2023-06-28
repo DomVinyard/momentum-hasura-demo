@@ -48,11 +48,11 @@ export type Boolean_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars["Boolean"]>>;
 };
 
-export type Donor = {
-  __typename?: "Donor";
+export type CrmDonor = {
+  __typename?: "CRMDonor";
   avatar: Scalars["String"];
   id: Scalars["String"];
-  info?: Maybe<Donor_Info>;
+  momentum?: Maybe<Donors>;
   name: Scalars["String"];
   uuid: Scalars["ID"];
 };
@@ -609,11 +609,11 @@ export enum Cursor_Ordering {
   Desc = "DESC",
 }
 
-/** columns and relationships of "donor_info" */
-export type Donor_Info = {
-  __typename?: "donor_info";
+/** columns and relationships of "donors" */
+export type Donors = {
+  __typename?: "donors";
+  crm?: Maybe<CrmDonor>;
   crm_id: Scalars["String"];
-  donor?: Maybe<Donor>;
   id: Scalars["uuid"];
   /** An object relationship */
   portfolio?: Maybe<Portfolios>;
@@ -621,84 +621,84 @@ export type Donor_Info = {
   touches?: Maybe<Scalars["Int"]>;
 };
 
-/** aggregated selection of "donor_info" */
-export type Donor_Info_Aggregate = {
-  __typename?: "donor_info_aggregate";
-  aggregate?: Maybe<Donor_Info_Aggregate_Fields>;
-  nodes: Array<Donor_Info>;
+/** aggregated selection of "donors" */
+export type Donors_Aggregate = {
+  __typename?: "donors_aggregate";
+  aggregate?: Maybe<Donors_Aggregate_Fields>;
+  nodes: Array<Donors>;
 };
 
-export type Donor_Info_Aggregate_Bool_Exp = {
-  count?: InputMaybe<Donor_Info_Aggregate_Bool_Exp_Count>;
+export type Donors_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Donors_Aggregate_Bool_Exp_Count>;
 };
 
-export type Donor_Info_Aggregate_Bool_Exp_Count = {
-  arguments?: InputMaybe<Array<Donor_Info_Select_Column>>;
+export type Donors_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Donors_Select_Column>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<Donor_Info_Bool_Exp>;
+  filter?: InputMaybe<Donors_Bool_Exp>;
   predicate: Int_Comparison_Exp;
 };
 
-/** aggregate fields of "donor_info" */
-export type Donor_Info_Aggregate_Fields = {
-  __typename?: "donor_info_aggregate_fields";
-  avg?: Maybe<Donor_Info_Avg_Fields>;
+/** aggregate fields of "donors" */
+export type Donors_Aggregate_Fields = {
+  __typename?: "donors_aggregate_fields";
+  avg?: Maybe<Donors_Avg_Fields>;
   count: Scalars["Int"];
-  max?: Maybe<Donor_Info_Max_Fields>;
-  min?: Maybe<Donor_Info_Min_Fields>;
-  stddev?: Maybe<Donor_Info_Stddev_Fields>;
-  stddev_pop?: Maybe<Donor_Info_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Donor_Info_Stddev_Samp_Fields>;
-  sum?: Maybe<Donor_Info_Sum_Fields>;
-  var_pop?: Maybe<Donor_Info_Var_Pop_Fields>;
-  var_samp?: Maybe<Donor_Info_Var_Samp_Fields>;
-  variance?: Maybe<Donor_Info_Variance_Fields>;
+  max?: Maybe<Donors_Max_Fields>;
+  min?: Maybe<Donors_Min_Fields>;
+  stddev?: Maybe<Donors_Stddev_Fields>;
+  stddev_pop?: Maybe<Donors_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Donors_Stddev_Samp_Fields>;
+  sum?: Maybe<Donors_Sum_Fields>;
+  var_pop?: Maybe<Donors_Var_Pop_Fields>;
+  var_samp?: Maybe<Donors_Var_Samp_Fields>;
+  variance?: Maybe<Donors_Variance_Fields>;
 };
 
-/** aggregate fields of "donor_info" */
-export type Donor_Info_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Donor_Info_Select_Column>>;
+/** aggregate fields of "donors" */
+export type Donors_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Donors_Select_Column>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
-/** order by aggregate values of table "donor_info" */
-export type Donor_Info_Aggregate_Order_By = {
-  avg?: InputMaybe<Donor_Info_Avg_Order_By>;
+/** order by aggregate values of table "donors" */
+export type Donors_Aggregate_Order_By = {
+  avg?: InputMaybe<Donors_Avg_Order_By>;
   count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Donor_Info_Max_Order_By>;
-  min?: InputMaybe<Donor_Info_Min_Order_By>;
-  stddev?: InputMaybe<Donor_Info_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Donor_Info_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Donor_Info_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Donor_Info_Sum_Order_By>;
-  var_pop?: InputMaybe<Donor_Info_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Donor_Info_Var_Samp_Order_By>;
-  variance?: InputMaybe<Donor_Info_Variance_Order_By>;
+  max?: InputMaybe<Donors_Max_Order_By>;
+  min?: InputMaybe<Donors_Min_Order_By>;
+  stddev?: InputMaybe<Donors_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Donors_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Donors_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Donors_Sum_Order_By>;
+  var_pop?: InputMaybe<Donors_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Donors_Var_Samp_Order_By>;
+  variance?: InputMaybe<Donors_Variance_Order_By>;
 };
 
-/** input type for inserting array relation for remote table "donor_info" */
-export type Donor_Info_Arr_Rel_Insert_Input = {
-  data: Array<Donor_Info_Insert_Input>;
+/** input type for inserting array relation for remote table "donors" */
+export type Donors_Arr_Rel_Insert_Input = {
+  data: Array<Donors_Insert_Input>;
   /** upsert condition */
-  on_conflict?: InputMaybe<Donor_Info_On_Conflict>;
+  on_conflict?: InputMaybe<Donors_On_Conflict>;
 };
 
 /** aggregate avg on columns */
-export type Donor_Info_Avg_Fields = {
-  __typename?: "donor_info_avg_fields";
+export type Donors_Avg_Fields = {
+  __typename?: "donors_avg_fields";
   touches?: Maybe<Scalars["Float"]>;
 };
 
-/** order by avg() on columns of table "donor_info" */
-export type Donor_Info_Avg_Order_By = {
+/** order by avg() on columns of table "donors" */
+export type Donors_Avg_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
-/** Boolean expression to filter rows from the table "donor_info". All fields are combined with a logical 'AND'. */
-export type Donor_Info_Bool_Exp = {
-  _and?: InputMaybe<Array<Donor_Info_Bool_Exp>>;
-  _not?: InputMaybe<Donor_Info_Bool_Exp>;
-  _or?: InputMaybe<Array<Donor_Info_Bool_Exp>>;
+/** Boolean expression to filter rows from the table "donors". All fields are combined with a logical 'AND'. */
+export type Donors_Bool_Exp = {
+  _and?: InputMaybe<Array<Donors_Bool_Exp>>;
+  _not?: InputMaybe<Donors_Bool_Exp>;
+  _or?: InputMaybe<Array<Donors_Bool_Exp>>;
   crm_id?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   portfolio?: InputMaybe<Portfolios_Bool_Exp>;
@@ -706,19 +706,19 @@ export type Donor_Info_Bool_Exp = {
   touches?: InputMaybe<Int_Comparison_Exp>;
 };
 
-/** unique or primary key constraints on table "donor_info" */
-export enum Donor_Info_Constraint {
+/** unique or primary key constraints on table "donors" */
+export enum Donors_Constraint {
   /** unique or primary key constraint on columns "id" */
   DonorsPkey = "donors_pkey",
 }
 
-/** input type for incrementing numeric columns in table "donor_info" */
-export type Donor_Info_Inc_Input = {
+/** input type for incrementing numeric columns in table "donors" */
+export type Donors_Inc_Input = {
   touches?: InputMaybe<Scalars["Int"]>;
 };
 
-/** input type for inserting data into table "donor_info" */
-export type Donor_Info_Insert_Input = {
+/** input type for inserting data into table "donors" */
+export type Donors_Insert_Input = {
   crm_id?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["uuid"]>;
   portfolio?: InputMaybe<Portfolios_Obj_Rel_Insert_Input>;
@@ -727,16 +727,16 @@ export type Donor_Info_Insert_Input = {
 };
 
 /** aggregate max on columns */
-export type Donor_Info_Max_Fields = {
-  __typename?: "donor_info_max_fields";
+export type Donors_Max_Fields = {
+  __typename?: "donors_max_fields";
   crm_id?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["uuid"]>;
   portfolio_id?: Maybe<Scalars["uuid"]>;
   touches?: Maybe<Scalars["Int"]>;
 };
 
-/** order by max() on columns of table "donor_info" */
-export type Donor_Info_Max_Order_By = {
+/** order by max() on columns of table "donors" */
+export type Donors_Max_Order_By = {
   crm_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   portfolio_id?: InputMaybe<Order_By>;
@@ -744,40 +744,40 @@ export type Donor_Info_Max_Order_By = {
 };
 
 /** aggregate min on columns */
-export type Donor_Info_Min_Fields = {
-  __typename?: "donor_info_min_fields";
+export type Donors_Min_Fields = {
+  __typename?: "donors_min_fields";
   crm_id?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["uuid"]>;
   portfolio_id?: Maybe<Scalars["uuid"]>;
   touches?: Maybe<Scalars["Int"]>;
 };
 
-/** order by min() on columns of table "donor_info" */
-export type Donor_Info_Min_Order_By = {
+/** order by min() on columns of table "donors" */
+export type Donors_Min_Order_By = {
   crm_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   portfolio_id?: InputMaybe<Order_By>;
   touches?: InputMaybe<Order_By>;
 };
 
-/** response of any mutation on the table "donor_info" */
-export type Donor_Info_Mutation_Response = {
-  __typename?: "donor_info_mutation_response";
+/** response of any mutation on the table "donors" */
+export type Donors_Mutation_Response = {
+  __typename?: "donors_mutation_response";
   /** number of rows affected by the mutation */
   affected_rows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<Donor_Info>;
+  returning: Array<Donors>;
 };
 
-/** on_conflict condition type for table "donor_info" */
-export type Donor_Info_On_Conflict = {
-  constraint: Donor_Info_Constraint;
-  update_columns?: Array<Donor_Info_Update_Column>;
-  where?: InputMaybe<Donor_Info_Bool_Exp>;
+/** on_conflict condition type for table "donors" */
+export type Donors_On_Conflict = {
+  constraint: Donors_Constraint;
+  update_columns?: Array<Donors_Update_Column>;
+  where?: InputMaybe<Donors_Bool_Exp>;
 };
 
-/** Ordering options when selecting data from "donor_info". */
-export type Donor_Info_Order_By = {
+/** Ordering options when selecting data from "donors". */
+export type Donors_Order_By = {
   crm_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   portfolio?: InputMaybe<Portfolios_Order_By>;
@@ -785,13 +785,13 @@ export type Donor_Info_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
-/** primary key columns input for table: donor_info */
-export type Donor_Info_Pk_Columns_Input = {
+/** primary key columns input for table: donors */
+export type Donors_Pk_Columns_Input = {
   id: Scalars["uuid"];
 };
 
-/** select columns of table "donor_info" */
-export enum Donor_Info_Select_Column {
+/** select columns of table "donors" */
+export enum Donors_Select_Column {
   /** column name */
   CrmId = "crm_id",
   /** column name */
@@ -802,8 +802,8 @@ export enum Donor_Info_Select_Column {
   Touches = "touches",
 }
 
-/** input type for updating data in table "donor_info" */
-export type Donor_Info_Set_Input = {
+/** input type for updating data in table "donors" */
+export type Donors_Set_Input = {
   crm_id?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["uuid"]>;
   portfolio_id?: InputMaybe<Scalars["uuid"]>;
@@ -811,48 +811,48 @@ export type Donor_Info_Set_Input = {
 };
 
 /** aggregate stddev on columns */
-export type Donor_Info_Stddev_Fields = {
-  __typename?: "donor_info_stddev_fields";
+export type Donors_Stddev_Fields = {
+  __typename?: "donors_stddev_fields";
   touches?: Maybe<Scalars["Float"]>;
 };
 
-/** order by stddev() on columns of table "donor_info" */
-export type Donor_Info_Stddev_Order_By = {
+/** order by stddev() on columns of table "donors" */
+export type Donors_Stddev_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
-export type Donor_Info_Stddev_Pop_Fields = {
-  __typename?: "donor_info_stddev_pop_fields";
+export type Donors_Stddev_Pop_Fields = {
+  __typename?: "donors_stddev_pop_fields";
   touches?: Maybe<Scalars["Float"]>;
 };
 
-/** order by stddev_pop() on columns of table "donor_info" */
-export type Donor_Info_Stddev_Pop_Order_By = {
+/** order by stddev_pop() on columns of table "donors" */
+export type Donors_Stddev_Pop_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
-export type Donor_Info_Stddev_Samp_Fields = {
-  __typename?: "donor_info_stddev_samp_fields";
+export type Donors_Stddev_Samp_Fields = {
+  __typename?: "donors_stddev_samp_fields";
   touches?: Maybe<Scalars["Float"]>;
 };
 
-/** order by stddev_samp() on columns of table "donor_info" */
-export type Donor_Info_Stddev_Samp_Order_By = {
+/** order by stddev_samp() on columns of table "donors" */
+export type Donors_Stddev_Samp_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
-/** Streaming cursor of the table "donor_info" */
-export type Donor_Info_Stream_Cursor_Input = {
+/** Streaming cursor of the table "donors" */
+export type Donors_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Donor_Info_Stream_Cursor_Value_Input;
+  initial_value: Donors_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Donor_Info_Stream_Cursor_Value_Input = {
+export type Donors_Stream_Cursor_Value_Input = {
   crm_id?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["uuid"]>;
   portfolio_id?: InputMaybe<Scalars["uuid"]>;
@@ -860,18 +860,18 @@ export type Donor_Info_Stream_Cursor_Value_Input = {
 };
 
 /** aggregate sum on columns */
-export type Donor_Info_Sum_Fields = {
-  __typename?: "donor_info_sum_fields";
+export type Donors_Sum_Fields = {
+  __typename?: "donors_sum_fields";
   touches?: Maybe<Scalars["Int"]>;
 };
 
-/** order by sum() on columns of table "donor_info" */
-export type Donor_Info_Sum_Order_By = {
+/** order by sum() on columns of table "donors" */
+export type Donors_Sum_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
-/** update columns of table "donor_info" */
-export enum Donor_Info_Update_Column {
+/** update columns of table "donors" */
+export enum Donors_Update_Column {
   /** column name */
   CrmId = "crm_id",
   /** column name */
@@ -882,45 +882,45 @@ export enum Donor_Info_Update_Column {
   Touches = "touches",
 }
 
-export type Donor_Info_Updates = {
+export type Donors_Updates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Donor_Info_Inc_Input>;
+  _inc?: InputMaybe<Donors_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Donor_Info_Set_Input>;
+  _set?: InputMaybe<Donors_Set_Input>;
   /** filter the rows which have to be updated */
-  where: Donor_Info_Bool_Exp;
+  where: Donors_Bool_Exp;
 };
 
 /** aggregate var_pop on columns */
-export type Donor_Info_Var_Pop_Fields = {
-  __typename?: "donor_info_var_pop_fields";
+export type Donors_Var_Pop_Fields = {
+  __typename?: "donors_var_pop_fields";
   touches?: Maybe<Scalars["Float"]>;
 };
 
-/** order by var_pop() on columns of table "donor_info" */
-export type Donor_Info_Var_Pop_Order_By = {
+/** order by var_pop() on columns of table "donors" */
+export type Donors_Var_Pop_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
-export type Donor_Info_Var_Samp_Fields = {
-  __typename?: "donor_info_var_samp_fields";
+export type Donors_Var_Samp_Fields = {
+  __typename?: "donors_var_samp_fields";
   touches?: Maybe<Scalars["Float"]>;
 };
 
-/** order by var_samp() on columns of table "donor_info" */
-export type Donor_Info_Var_Samp_Order_By = {
+/** order by var_samp() on columns of table "donors" */
+export type Donors_Var_Samp_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
-export type Donor_Info_Variance_Fields = {
-  __typename?: "donor_info_variance_fields";
+export type Donors_Variance_Fields = {
+  __typename?: "donors_variance_fields";
   touches?: Maybe<Scalars["Float"]>;
 };
 
-/** order by variance() on columns of table "donor_info" */
-export type Donor_Info_Variance_Order_By = {
+/** order by variance() on columns of table "donors" */
+export type Donors_Variance_Order_By = {
   touches?: InputMaybe<Order_By>;
 };
 
@@ -931,10 +931,10 @@ export type Mutation_Root = {
   delete_accounts?: Maybe<Accounts_Mutation_Response>;
   /** delete single row from the table: "accounts" */
   delete_accounts_by_pk?: Maybe<Accounts>;
-  /** delete data from the table: "donor_info" */
-  delete_donor_info?: Maybe<Donor_Info_Mutation_Response>;
-  /** delete single row from the table: "donor_info" */
-  delete_donor_info_by_pk?: Maybe<Donor_Info>;
+  /** delete data from the table: "donors" */
+  delete_donors?: Maybe<Donors_Mutation_Response>;
+  /** delete single row from the table: "donors" */
+  delete_donors_by_pk?: Maybe<Donors>;
   /** delete data from the table: "org_memberships" */
   delete_org_memberships?: Maybe<Org_Memberships_Mutation_Response>;
   /** delete single row from the table: "org_memberships" */
@@ -963,10 +963,10 @@ export type Mutation_Root = {
   insert_accounts?: Maybe<Accounts_Mutation_Response>;
   /** insert a single row into the table: "accounts" */
   insert_accounts_one?: Maybe<Accounts>;
-  /** insert data into the table: "donor_info" */
-  insert_donor_info?: Maybe<Donor_Info_Mutation_Response>;
-  /** insert a single row into the table: "donor_info" */
-  insert_donor_info_one?: Maybe<Donor_Info>;
+  /** insert data into the table: "donors" */
+  insert_donors?: Maybe<Donors_Mutation_Response>;
+  /** insert a single row into the table: "donors" */
+  insert_donors_one?: Maybe<Donors>;
   /** insert data into the table: "org_memberships" */
   insert_org_memberships?: Maybe<Org_Memberships_Mutation_Response>;
   /** insert a single row into the table: "org_memberships" */
@@ -998,12 +998,12 @@ export type Mutation_Root = {
   update_accounts_by_pk?: Maybe<Accounts>;
   /** update multiples rows of table: "accounts" */
   update_accounts_many?: Maybe<Array<Maybe<Accounts_Mutation_Response>>>;
-  /** update data of the table: "donor_info" */
-  update_donor_info?: Maybe<Donor_Info_Mutation_Response>;
-  /** update single row of the table: "donor_info" */
-  update_donor_info_by_pk?: Maybe<Donor_Info>;
-  /** update multiples rows of table: "donor_info" */
-  update_donor_info_many?: Maybe<Array<Maybe<Donor_Info_Mutation_Response>>>;
+  /** update data of the table: "donors" */
+  update_donors?: Maybe<Donors_Mutation_Response>;
+  /** update single row of the table: "donors" */
+  update_donors_by_pk?: Maybe<Donors>;
+  /** update multiples rows of table: "donors" */
+  update_donors_many?: Maybe<Array<Maybe<Donors_Mutation_Response>>>;
   /** update data of the table: "org_memberships" */
   update_org_memberships?: Maybe<Org_Memberships_Mutation_Response>;
   /** update single row of the table: "org_memberships" */
@@ -1057,12 +1057,12 @@ export type Mutation_RootDelete_Accounts_By_PkArgs = {
 };
 
 /** mutation root */
-export type Mutation_RootDelete_Donor_InfoArgs = {
-  where: Donor_Info_Bool_Exp;
+export type Mutation_RootDelete_DonorsArgs = {
+  where: Donors_Bool_Exp;
 };
 
 /** mutation root */
-export type Mutation_RootDelete_Donor_Info_By_PkArgs = {
+export type Mutation_RootDelete_Donors_By_PkArgs = {
   id: Scalars["uuid"];
 };
 
@@ -1139,15 +1139,15 @@ export type Mutation_RootInsert_Accounts_OneArgs = {
 };
 
 /** mutation root */
-export type Mutation_RootInsert_Donor_InfoArgs = {
-  objects: Array<Donor_Info_Insert_Input>;
-  on_conflict?: InputMaybe<Donor_Info_On_Conflict>;
+export type Mutation_RootInsert_DonorsArgs = {
+  objects: Array<Donors_Insert_Input>;
+  on_conflict?: InputMaybe<Donors_On_Conflict>;
 };
 
 /** mutation root */
-export type Mutation_RootInsert_Donor_Info_OneArgs = {
-  object: Donor_Info_Insert_Input;
-  on_conflict?: InputMaybe<Donor_Info_On_Conflict>;
+export type Mutation_RootInsert_Donors_OneArgs = {
+  object: Donors_Insert_Input;
+  on_conflict?: InputMaybe<Donors_On_Conflict>;
 };
 
 /** mutation root */
@@ -1248,22 +1248,22 @@ export type Mutation_RootUpdate_Accounts_ManyArgs = {
 };
 
 /** mutation root */
-export type Mutation_RootUpdate_Donor_InfoArgs = {
-  _inc?: InputMaybe<Donor_Info_Inc_Input>;
-  _set?: InputMaybe<Donor_Info_Set_Input>;
-  where: Donor_Info_Bool_Exp;
+export type Mutation_RootUpdate_DonorsArgs = {
+  _inc?: InputMaybe<Donors_Inc_Input>;
+  _set?: InputMaybe<Donors_Set_Input>;
+  where: Donors_Bool_Exp;
 };
 
 /** mutation root */
-export type Mutation_RootUpdate_Donor_Info_By_PkArgs = {
-  _inc?: InputMaybe<Donor_Info_Inc_Input>;
-  _set?: InputMaybe<Donor_Info_Set_Input>;
-  pk_columns: Donor_Info_Pk_Columns_Input;
+export type Mutation_RootUpdate_Donors_By_PkArgs = {
+  _inc?: InputMaybe<Donors_Inc_Input>;
+  _set?: InputMaybe<Donors_Set_Input>;
+  pk_columns: Donors_Pk_Columns_Input;
 };
 
 /** mutation root */
-export type Mutation_RootUpdate_Donor_Info_ManyArgs = {
-  updates: Array<Donor_Info_Updates>;
+export type Mutation_RootUpdate_Donors_ManyArgs = {
+  updates: Array<Donors_Updates>;
 };
 
 /** mutation root */
@@ -1775,9 +1775,9 @@ export type Portfolios = {
   __typename?: "portfolios";
   id: Scalars["uuid"];
   /** An array relationship */
-  members: Array<Donor_Info>;
+  members: Array<Donors>;
   /** An aggregate relationship */
-  members_aggregate: Donor_Info_Aggregate;
+  members_aggregate: Donors_Aggregate;
   name: Scalars["String"];
   /** An object relationship */
   org?: Maybe<Orgs>;
@@ -1786,20 +1786,20 @@ export type Portfolios = {
 
 /** columns and relationships of "portfolios" */
 export type PortfoliosMembersArgs = {
-  distinct_on?: InputMaybe<Array<Donor_Info_Select_Column>>;
+  distinct_on?: InputMaybe<Array<Donors_Select_Column>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  order_by?: InputMaybe<Array<Donor_Info_Order_By>>;
-  where?: InputMaybe<Donor_Info_Bool_Exp>;
+  order_by?: InputMaybe<Array<Donors_Order_By>>;
+  where?: InputMaybe<Donors_Bool_Exp>;
 };
 
 /** columns and relationships of "portfolios" */
 export type PortfoliosMembers_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Donor_Info_Select_Column>>;
+  distinct_on?: InputMaybe<Array<Donors_Select_Column>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  order_by?: InputMaybe<Array<Donor_Info_Order_By>>;
-  where?: InputMaybe<Donor_Info_Bool_Exp>;
+  order_by?: InputMaybe<Array<Donors_Order_By>>;
+  where?: InputMaybe<Donors_Bool_Exp>;
 };
 
 /** aggregated selection of "portfolios" */
@@ -1854,8 +1854,8 @@ export type Portfolios_Bool_Exp = {
   _not?: InputMaybe<Portfolios_Bool_Exp>;
   _or?: InputMaybe<Array<Portfolios_Bool_Exp>>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  members?: InputMaybe<Donor_Info_Bool_Exp>;
-  members_aggregate?: InputMaybe<Donor_Info_Aggregate_Bool_Exp>;
+  members?: InputMaybe<Donors_Bool_Exp>;
+  members_aggregate?: InputMaybe<Donors_Aggregate_Bool_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   org?: InputMaybe<Orgs_Bool_Exp>;
   org_id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -1870,7 +1870,7 @@ export enum Portfolios_Constraint {
 /** input type for inserting data into table "portfolios" */
 export type Portfolios_Insert_Input = {
   id?: InputMaybe<Scalars["uuid"]>;
-  members?: InputMaybe<Donor_Info_Arr_Rel_Insert_Input>;
+  members?: InputMaybe<Donors_Arr_Rel_Insert_Input>;
   name?: InputMaybe<Scalars["String"]>;
   org?: InputMaybe<Orgs_Obj_Rel_Insert_Input>;
   org_id?: InputMaybe<Scalars["uuid"]>;
@@ -1932,7 +1932,7 @@ export type Portfolios_On_Conflict = {
 /** Ordering options when selecting data from "portfolios". */
 export type Portfolios_Order_By = {
   id?: InputMaybe<Order_By>;
-  members_aggregate?: InputMaybe<Donor_Info_Aggregate_Order_By>;
+  members_aggregate?: InputMaybe<Donors_Aggregate_Order_By>;
   name?: InputMaybe<Order_By>;
   org?: InputMaybe<Orgs_Order_By>;
   org_id?: InputMaybe<Order_By>;
@@ -1994,20 +1994,20 @@ export type Portfolios_Updates = {
 
 export type Query_Root = {
   __typename?: "query_root";
+  CRMDonor?: Maybe<CrmDonor>;
+  CRMDonors?: Maybe<Array<Maybe<CrmDonor>>>;
   /** An array relationship */
   accounts: Array<Accounts>;
   /** An aggregate relationship */
   accounts_aggregate: Accounts_Aggregate;
   /** fetch data from the table: "accounts" using primary key columns */
   accounts_by_pk?: Maybe<Accounts>;
-  donor?: Maybe<Donor>;
-  /** fetch data from the table: "donor_info" */
-  donor_info: Array<Donor_Info>;
-  /** fetch aggregated fields from the table: "donor_info" */
-  donor_info_aggregate: Donor_Info_Aggregate;
-  /** fetch data from the table: "donor_info" using primary key columns */
-  donor_info_by_pk?: Maybe<Donor_Info>;
-  donors?: Maybe<Array<Maybe<Donor>>>;
+  /** fetch data from the table: "donors" */
+  donors: Array<Donors>;
+  /** fetch aggregated fields from the table: "donors" */
+  donors_aggregate: Donors_Aggregate;
+  /** fetch data from the table: "donors" using primary key columns */
+  donors_by_pk?: Maybe<Donors>;
   /** fetch data from the table: "org_memberships" */
   org_memberships: Array<Org_Memberships>;
   /** fetch aggregated fields from the table: "org_memberships" */
@@ -2046,6 +2046,10 @@ export type Query_Root = {
   verification_tokens_by_pk?: Maybe<Verification_Tokens>;
 };
 
+export type Query_RootCrmDonorArgs = {
+  id?: InputMaybe<Scalars["String"]>;
+};
+
 export type Query_RootAccountsArgs = {
   distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -2066,27 +2070,23 @@ export type Query_RootAccounts_By_PkArgs = {
   id: Scalars["uuid"];
 };
 
-export type Query_RootDonorArgs = {
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-export type Query_RootDonor_InfoArgs = {
-  distinct_on?: InputMaybe<Array<Donor_Info_Select_Column>>;
+export type Query_RootDonorsArgs = {
+  distinct_on?: InputMaybe<Array<Donors_Select_Column>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  order_by?: InputMaybe<Array<Donor_Info_Order_By>>;
-  where?: InputMaybe<Donor_Info_Bool_Exp>;
+  order_by?: InputMaybe<Array<Donors_Order_By>>;
+  where?: InputMaybe<Donors_Bool_Exp>;
 };
 
-export type Query_RootDonor_Info_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Donor_Info_Select_Column>>;
+export type Query_RootDonors_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Donors_Select_Column>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  order_by?: InputMaybe<Array<Donor_Info_Order_By>>;
-  where?: InputMaybe<Donor_Info_Bool_Exp>;
+  order_by?: InputMaybe<Array<Donors_Order_By>>;
+  where?: InputMaybe<Donors_Bool_Exp>;
 };
 
-export type Query_RootDonor_Info_By_PkArgs = {
+export type Query_RootDonors_By_PkArgs = {
   id: Scalars["uuid"];
 };
 
@@ -2423,14 +2423,14 @@ export type Subscription_Root = {
   accounts_by_pk?: Maybe<Accounts>;
   /** fetch data from the table in a streaming manner: "accounts" */
   accounts_stream: Array<Accounts>;
-  /** fetch data from the table: "donor_info" */
-  donor_info: Array<Donor_Info>;
-  /** fetch aggregated fields from the table: "donor_info" */
-  donor_info_aggregate: Donor_Info_Aggregate;
-  /** fetch data from the table: "donor_info" using primary key columns */
-  donor_info_by_pk?: Maybe<Donor_Info>;
-  /** fetch data from the table in a streaming manner: "donor_info" */
-  donor_info_stream: Array<Donor_Info>;
+  /** fetch data from the table: "donors" */
+  donors: Array<Donors>;
+  /** fetch aggregated fields from the table: "donors" */
+  donors_aggregate: Donors_Aggregate;
+  /** fetch data from the table: "donors" using primary key columns */
+  donors_by_pk?: Maybe<Donors>;
+  /** fetch data from the table in a streaming manner: "donors" */
+  donors_stream: Array<Donors>;
   /** fetch data from the table: "org_memberships" */
   org_memberships: Array<Org_Memberships>;
   /** fetch aggregated fields from the table: "org_memberships" */
@@ -2507,30 +2507,30 @@ export type Subscription_RootAccounts_StreamArgs = {
   where?: InputMaybe<Accounts_Bool_Exp>;
 };
 
-export type Subscription_RootDonor_InfoArgs = {
-  distinct_on?: InputMaybe<Array<Donor_Info_Select_Column>>;
+export type Subscription_RootDonorsArgs = {
+  distinct_on?: InputMaybe<Array<Donors_Select_Column>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  order_by?: InputMaybe<Array<Donor_Info_Order_By>>;
-  where?: InputMaybe<Donor_Info_Bool_Exp>;
+  order_by?: InputMaybe<Array<Donors_Order_By>>;
+  where?: InputMaybe<Donors_Bool_Exp>;
 };
 
-export type Subscription_RootDonor_Info_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Donor_Info_Select_Column>>;
+export type Subscription_RootDonors_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Donors_Select_Column>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  order_by?: InputMaybe<Array<Donor_Info_Order_By>>;
-  where?: InputMaybe<Donor_Info_Bool_Exp>;
+  order_by?: InputMaybe<Array<Donors_Order_By>>;
+  where?: InputMaybe<Donors_Bool_Exp>;
 };
 
-export type Subscription_RootDonor_Info_By_PkArgs = {
+export type Subscription_RootDonors_By_PkArgs = {
   id: Scalars["uuid"];
 };
 
-export type Subscription_RootDonor_Info_StreamArgs = {
+export type Subscription_RootDonors_StreamArgs = {
   batch_size: Scalars["Int"];
-  cursor: Array<InputMaybe<Donor_Info_Stream_Cursor_Input>>;
-  where?: InputMaybe<Donor_Info_Bool_Exp>;
+  cursor: Array<InputMaybe<Donors_Stream_Cursor_Input>>;
+  where?: InputMaybe<Donors_Bool_Exp>;
 };
 
 export type Subscription_RootOrg_MembershipsArgs = {
@@ -3127,17 +3127,23 @@ export type Verification_Tokens_Updates = {
 };
 
 export type GetDonorQueryVariables = Exact<{
-  infoID: Scalars["uuid"];
+  donorID: Scalars["uuid"];
 }>;
 
 export type GetDonorQuery = {
   __typename?: "query_root";
-  donor_info_by_pk?:
+  donors_by_pk?:
     | {
-        __typename?: "donor_info";
+        __typename?: "donors";
+        id: any;
         touches?: number | undefined;
-        donor?:
-          | { __typename?: "Donor"; name: string; id: string; avatar: string }
+        crm?:
+          | {
+              __typename?: "CRMDonor";
+              name: string;
+              id: string;
+              avatar: string;
+            }
           | undefined;
       }
     | undefined;
@@ -3149,8 +3155,8 @@ export type IncrementTouchMutationVariables = Exact<{
 
 export type IncrementTouchMutation = {
   __typename?: "mutation_root";
-  update_donor_info_by_pk?:
-    | { __typename?: "donor_info"; id: any; touches?: number | undefined }
+  update_donors_by_pk?:
+    | { __typename?: "donors"; id: any; touches?: number | undefined }
     | undefined;
 };
 
@@ -3170,7 +3176,7 @@ export type AssignToPortfolioMutationVariables = Exact<{
 
 export type AssignToPortfolioMutation = {
   __typename?: "mutation_root";
-  insert_donor_info_one?: { __typename?: "donor_info"; id: any } | undefined;
+  insert_donors_one?: { __typename?: "donors"; id: any } | undefined;
 };
 
 export type DeletePortfolioMutationVariables = Exact<{
@@ -3194,14 +3200,21 @@ export type GetPortfolioQuery = {
         id: any;
         name: string;
         members: Array<{
-          __typename?: "donor_info";
-          donor?:
+          __typename?: "donors";
+          id: any;
+          crm?:
             | {
-                __typename?: "Donor";
+                __typename?: "CRMDonor";
                 id: string;
                 name: string;
                 avatar: string;
-                info?: { __typename?: "donor_info"; id: any } | undefined;
+                momentum?:
+                  | {
+                      __typename?: "donors";
+                      id: any;
+                      touches?: number | undefined;
+                    }
+                  | undefined;
               }
             | undefined;
         }>;
@@ -3213,14 +3226,16 @@ export type GetUnassignedQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetUnassignedQuery = {
   __typename?: "query_root";
-  donors?:
+  CRMDonors?:
     | Array<
         | {
-            __typename?: "Donor";
+            __typename?: "CRMDonor";
             id: string;
             name: string;
             avatar: string;
-            info?: { __typename?: "donor_info"; portfolio_id: any } | undefined;
+            momentum?:
+              | { __typename?: "donors"; id: any; portfolio_id: any }
+              | undefined;
           }
         | undefined
       >
@@ -3290,10 +3305,11 @@ export type GetPortfoliosQuery = {
 };
 
 export const GetDonorDocument = gql`
-  query GetDonor($infoID: uuid!) {
-    donor_info_by_pk(id: $infoID) {
+  query GetDonor($donorID: uuid!) {
+    donors_by_pk(id: $donorID) {
+      id
       touches
-      donor {
+      crm {
         name
         id
         avatar
@@ -3329,7 +3345,7 @@ export const GetDonorComponent = (props: GetDonorComponentProps) => (
  * @example
  * const { data, loading, error } = useGetDonorQuery({
  *   variables: {
- *      infoID: // value for 'infoID'
+ *      donorID: // value for 'donorID'
  *   },
  * });
  */
@@ -3364,7 +3380,7 @@ export type GetDonorQueryResult = Apollo.QueryResult<
 >;
 export const IncrementTouchDocument = gql`
   mutation IncrementTouch($infoID: uuid!) {
-    update_donor_info_by_pk(pk_columns: { id: $infoID }, _inc: { touches: 1 }) {
+    update_donors_by_pk(pk_columns: { id: $infoID }, _inc: { touches: 1 }) {
       id
       touches
     }
@@ -3500,9 +3516,7 @@ export type SimulateSendEmailMutationOptions = Apollo.BaseMutationOptions<
 >;
 export const AssignToPortfolioDocument = gql`
   mutation AssignToPortfolio($portfolioID: uuid!, $crmID: String!) {
-    insert_donor_info_one(
-      object: { portfolio_id: $portfolioID, crm_id: $crmID }
-    ) {
+    insert_donors_one(object: { portfolio_id: $portfolioID, crm_id: $crmID }) {
       id
     }
   }
@@ -3644,13 +3658,15 @@ export const GetPortfolioDocument = gql`
     portfolios_by_pk(id: $portfolioID) {
       id
       name
-      members {
-        donor {
+      members(order_by: { touches: asc }) {
+        id
+        crm {
           id
           name
           avatar
-          info {
+          momentum {
             id
+            touches
           }
         }
       }
@@ -3728,11 +3744,12 @@ export type GetPortfolioQueryResult = Apollo.QueryResult<
 >;
 export const GetUnassignedDocument = gql`
   query GetUnassigned {
-    donors {
+    CRMDonors {
       id
       name
       avatar
-      info {
+      momentum {
+        id
         portfolio_id
       }
     }
@@ -4195,7 +4212,7 @@ export type DirectiveResolverFn<
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
   Boolean_comparison_exp: Boolean_Comparison_Exp;
-  Donor: ResolverTypeWrapper<Donor>;
+  CRMDonor: ResolverTypeWrapper<CrmDonor>;
   Float: ResolverTypeWrapper<Scalars["Float"]>;
   ID: ResolverTypeWrapper<Scalars["ID"]>;
   Int: ResolverTypeWrapper<Scalars["Int"]>;
@@ -4246,47 +4263,47 @@ export type ResolversTypes = {
   bigint: ResolverTypeWrapper<Scalars["bigint"]>;
   bigint_comparison_exp: Bigint_Comparison_Exp;
   cursor_ordering: Cursor_Ordering;
-  donor_info: ResolverTypeWrapper<Donor_Info>;
-  donor_info_aggregate: ResolverTypeWrapper<Donor_Info_Aggregate>;
-  donor_info_aggregate_bool_exp: Donor_Info_Aggregate_Bool_Exp;
-  donor_info_aggregate_bool_exp_count: Donor_Info_Aggregate_Bool_Exp_Count;
-  donor_info_aggregate_fields: ResolverTypeWrapper<Donor_Info_Aggregate_Fields>;
-  donor_info_aggregate_order_by: Donor_Info_Aggregate_Order_By;
-  donor_info_arr_rel_insert_input: Donor_Info_Arr_Rel_Insert_Input;
-  donor_info_avg_fields: ResolverTypeWrapper<Donor_Info_Avg_Fields>;
-  donor_info_avg_order_by: Donor_Info_Avg_Order_By;
-  donor_info_bool_exp: Donor_Info_Bool_Exp;
-  donor_info_constraint: Donor_Info_Constraint;
-  donor_info_inc_input: Donor_Info_Inc_Input;
-  donor_info_insert_input: Donor_Info_Insert_Input;
-  donor_info_max_fields: ResolverTypeWrapper<Donor_Info_Max_Fields>;
-  donor_info_max_order_by: Donor_Info_Max_Order_By;
-  donor_info_min_fields: ResolverTypeWrapper<Donor_Info_Min_Fields>;
-  donor_info_min_order_by: Donor_Info_Min_Order_By;
-  donor_info_mutation_response: ResolverTypeWrapper<Donor_Info_Mutation_Response>;
-  donor_info_on_conflict: Donor_Info_On_Conflict;
-  donor_info_order_by: Donor_Info_Order_By;
-  donor_info_pk_columns_input: Donor_Info_Pk_Columns_Input;
-  donor_info_select_column: Donor_Info_Select_Column;
-  donor_info_set_input: Donor_Info_Set_Input;
-  donor_info_stddev_fields: ResolverTypeWrapper<Donor_Info_Stddev_Fields>;
-  donor_info_stddev_order_by: Donor_Info_Stddev_Order_By;
-  donor_info_stddev_pop_fields: ResolverTypeWrapper<Donor_Info_Stddev_Pop_Fields>;
-  donor_info_stddev_pop_order_by: Donor_Info_Stddev_Pop_Order_By;
-  donor_info_stddev_samp_fields: ResolverTypeWrapper<Donor_Info_Stddev_Samp_Fields>;
-  donor_info_stddev_samp_order_by: Donor_Info_Stddev_Samp_Order_By;
-  donor_info_stream_cursor_input: Donor_Info_Stream_Cursor_Input;
-  donor_info_stream_cursor_value_input: Donor_Info_Stream_Cursor_Value_Input;
-  donor_info_sum_fields: ResolverTypeWrapper<Donor_Info_Sum_Fields>;
-  donor_info_sum_order_by: Donor_Info_Sum_Order_By;
-  donor_info_update_column: Donor_Info_Update_Column;
-  donor_info_updates: Donor_Info_Updates;
-  donor_info_var_pop_fields: ResolverTypeWrapper<Donor_Info_Var_Pop_Fields>;
-  donor_info_var_pop_order_by: Donor_Info_Var_Pop_Order_By;
-  donor_info_var_samp_fields: ResolverTypeWrapper<Donor_Info_Var_Samp_Fields>;
-  donor_info_var_samp_order_by: Donor_Info_Var_Samp_Order_By;
-  donor_info_variance_fields: ResolverTypeWrapper<Donor_Info_Variance_Fields>;
-  donor_info_variance_order_by: Donor_Info_Variance_Order_By;
+  donors: ResolverTypeWrapper<Donors>;
+  donors_aggregate: ResolverTypeWrapper<Donors_Aggregate>;
+  donors_aggregate_bool_exp: Donors_Aggregate_Bool_Exp;
+  donors_aggregate_bool_exp_count: Donors_Aggregate_Bool_Exp_Count;
+  donors_aggregate_fields: ResolverTypeWrapper<Donors_Aggregate_Fields>;
+  donors_aggregate_order_by: Donors_Aggregate_Order_By;
+  donors_arr_rel_insert_input: Donors_Arr_Rel_Insert_Input;
+  donors_avg_fields: ResolverTypeWrapper<Donors_Avg_Fields>;
+  donors_avg_order_by: Donors_Avg_Order_By;
+  donors_bool_exp: Donors_Bool_Exp;
+  donors_constraint: Donors_Constraint;
+  donors_inc_input: Donors_Inc_Input;
+  donors_insert_input: Donors_Insert_Input;
+  donors_max_fields: ResolverTypeWrapper<Donors_Max_Fields>;
+  donors_max_order_by: Donors_Max_Order_By;
+  donors_min_fields: ResolverTypeWrapper<Donors_Min_Fields>;
+  donors_min_order_by: Donors_Min_Order_By;
+  donors_mutation_response: ResolverTypeWrapper<Donors_Mutation_Response>;
+  donors_on_conflict: Donors_On_Conflict;
+  donors_order_by: Donors_Order_By;
+  donors_pk_columns_input: Donors_Pk_Columns_Input;
+  donors_select_column: Donors_Select_Column;
+  donors_set_input: Donors_Set_Input;
+  donors_stddev_fields: ResolverTypeWrapper<Donors_Stddev_Fields>;
+  donors_stddev_order_by: Donors_Stddev_Order_By;
+  donors_stddev_pop_fields: ResolverTypeWrapper<Donors_Stddev_Pop_Fields>;
+  donors_stddev_pop_order_by: Donors_Stddev_Pop_Order_By;
+  donors_stddev_samp_fields: ResolverTypeWrapper<Donors_Stddev_Samp_Fields>;
+  donors_stddev_samp_order_by: Donors_Stddev_Samp_Order_By;
+  donors_stream_cursor_input: Donors_Stream_Cursor_Input;
+  donors_stream_cursor_value_input: Donors_Stream_Cursor_Value_Input;
+  donors_sum_fields: ResolverTypeWrapper<Donors_Sum_Fields>;
+  donors_sum_order_by: Donors_Sum_Order_By;
+  donors_update_column: Donors_Update_Column;
+  donors_updates: Donors_Updates;
+  donors_var_pop_fields: ResolverTypeWrapper<Donors_Var_Pop_Fields>;
+  donors_var_pop_order_by: Donors_Var_Pop_Order_By;
+  donors_var_samp_fields: ResolverTypeWrapper<Donors_Var_Samp_Fields>;
+  donors_var_samp_order_by: Donors_Var_Samp_Order_By;
+  donors_variance_fields: ResolverTypeWrapper<Donors_Variance_Fields>;
+  donors_variance_order_by: Donors_Variance_Order_By;
   mutation_root: ResolverTypeWrapper<{}>;
   order_by: Order_By;
   org_memberships: ResolverTypeWrapper<Org_Memberships>;
@@ -4430,7 +4447,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Boolean: Scalars["Boolean"];
   Boolean_comparison_exp: Boolean_Comparison_Exp;
-  Donor: Donor;
+  CRMDonor: CrmDonor;
   Float: Scalars["Float"];
   ID: Scalars["ID"];
   Int: Scalars["Int"];
@@ -4477,44 +4494,44 @@ export type ResolversParentTypes = {
   accounts_variance_order_by: Accounts_Variance_Order_By;
   bigint: Scalars["bigint"];
   bigint_comparison_exp: Bigint_Comparison_Exp;
-  donor_info: Donor_Info;
-  donor_info_aggregate: Donor_Info_Aggregate;
-  donor_info_aggregate_bool_exp: Donor_Info_Aggregate_Bool_Exp;
-  donor_info_aggregate_bool_exp_count: Donor_Info_Aggregate_Bool_Exp_Count;
-  donor_info_aggregate_fields: Donor_Info_Aggregate_Fields;
-  donor_info_aggregate_order_by: Donor_Info_Aggregate_Order_By;
-  donor_info_arr_rel_insert_input: Donor_Info_Arr_Rel_Insert_Input;
-  donor_info_avg_fields: Donor_Info_Avg_Fields;
-  donor_info_avg_order_by: Donor_Info_Avg_Order_By;
-  donor_info_bool_exp: Donor_Info_Bool_Exp;
-  donor_info_inc_input: Donor_Info_Inc_Input;
-  donor_info_insert_input: Donor_Info_Insert_Input;
-  donor_info_max_fields: Donor_Info_Max_Fields;
-  donor_info_max_order_by: Donor_Info_Max_Order_By;
-  donor_info_min_fields: Donor_Info_Min_Fields;
-  donor_info_min_order_by: Donor_Info_Min_Order_By;
-  donor_info_mutation_response: Donor_Info_Mutation_Response;
-  donor_info_on_conflict: Donor_Info_On_Conflict;
-  donor_info_order_by: Donor_Info_Order_By;
-  donor_info_pk_columns_input: Donor_Info_Pk_Columns_Input;
-  donor_info_set_input: Donor_Info_Set_Input;
-  donor_info_stddev_fields: Donor_Info_Stddev_Fields;
-  donor_info_stddev_order_by: Donor_Info_Stddev_Order_By;
-  donor_info_stddev_pop_fields: Donor_Info_Stddev_Pop_Fields;
-  donor_info_stddev_pop_order_by: Donor_Info_Stddev_Pop_Order_By;
-  donor_info_stddev_samp_fields: Donor_Info_Stddev_Samp_Fields;
-  donor_info_stddev_samp_order_by: Donor_Info_Stddev_Samp_Order_By;
-  donor_info_stream_cursor_input: Donor_Info_Stream_Cursor_Input;
-  donor_info_stream_cursor_value_input: Donor_Info_Stream_Cursor_Value_Input;
-  donor_info_sum_fields: Donor_Info_Sum_Fields;
-  donor_info_sum_order_by: Donor_Info_Sum_Order_By;
-  donor_info_updates: Donor_Info_Updates;
-  donor_info_var_pop_fields: Donor_Info_Var_Pop_Fields;
-  donor_info_var_pop_order_by: Donor_Info_Var_Pop_Order_By;
-  donor_info_var_samp_fields: Donor_Info_Var_Samp_Fields;
-  donor_info_var_samp_order_by: Donor_Info_Var_Samp_Order_By;
-  donor_info_variance_fields: Donor_Info_Variance_Fields;
-  donor_info_variance_order_by: Donor_Info_Variance_Order_By;
+  donors: Donors;
+  donors_aggregate: Donors_Aggregate;
+  donors_aggregate_bool_exp: Donors_Aggregate_Bool_Exp;
+  donors_aggregate_bool_exp_count: Donors_Aggregate_Bool_Exp_Count;
+  donors_aggregate_fields: Donors_Aggregate_Fields;
+  donors_aggregate_order_by: Donors_Aggregate_Order_By;
+  donors_arr_rel_insert_input: Donors_Arr_Rel_Insert_Input;
+  donors_avg_fields: Donors_Avg_Fields;
+  donors_avg_order_by: Donors_Avg_Order_By;
+  donors_bool_exp: Donors_Bool_Exp;
+  donors_inc_input: Donors_Inc_Input;
+  donors_insert_input: Donors_Insert_Input;
+  donors_max_fields: Donors_Max_Fields;
+  donors_max_order_by: Donors_Max_Order_By;
+  donors_min_fields: Donors_Min_Fields;
+  donors_min_order_by: Donors_Min_Order_By;
+  donors_mutation_response: Donors_Mutation_Response;
+  donors_on_conflict: Donors_On_Conflict;
+  donors_order_by: Donors_Order_By;
+  donors_pk_columns_input: Donors_Pk_Columns_Input;
+  donors_set_input: Donors_Set_Input;
+  donors_stddev_fields: Donors_Stddev_Fields;
+  donors_stddev_order_by: Donors_Stddev_Order_By;
+  donors_stddev_pop_fields: Donors_Stddev_Pop_Fields;
+  donors_stddev_pop_order_by: Donors_Stddev_Pop_Order_By;
+  donors_stddev_samp_fields: Donors_Stddev_Samp_Fields;
+  donors_stddev_samp_order_by: Donors_Stddev_Samp_Order_By;
+  donors_stream_cursor_input: Donors_Stream_Cursor_Input;
+  donors_stream_cursor_value_input: Donors_Stream_Cursor_Value_Input;
+  donors_sum_fields: Donors_Sum_Fields;
+  donors_sum_order_by: Donors_Sum_Order_By;
+  donors_updates: Donors_Updates;
+  donors_var_pop_fields: Donors_Var_Pop_Fields;
+  donors_var_pop_order_by: Donors_Var_Pop_Order_By;
+  donors_var_samp_fields: Donors_Var_Samp_Fields;
+  donors_var_samp_order_by: Donors_Var_Samp_Order_By;
+  donors_variance_fields: Donors_Variance_Fields;
+  donors_variance_order_by: Donors_Variance_Order_By;
   mutation_root: {};
   org_memberships: Org_Memberships;
   org_memberships_aggregate: Org_Memberships_Aggregate;
@@ -4647,13 +4664,13 @@ export type CachedDirectiveResolver<
   Args = CachedDirectiveArgs
 > = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type DonorResolvers<
+export type CrmDonorResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["Donor"] = ResolversParentTypes["Donor"]
+  ParentType extends ResolversParentTypes["CRMDonor"] = ResolversParentTypes["CRMDonor"]
 > = {
   avatar?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   id?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
-  info?: Resolver<Maybe<ResolversTypes["donor_info"]>, ParentType, ContextType>;
+  momentum?: Resolver<Maybe<ResolversTypes["donors"]>, ParentType, ContextType>;
   name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   uuid?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -5064,12 +5081,12 @@ export interface BigintScalarConfig
   name: "bigint";
 }
 
-export type Donor_InfoResolvers<
+export type DonorsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info"] = ResolversParentTypes["donor_info"]
+  ParentType extends ResolversParentTypes["donors"] = ResolversParentTypes["donors"]
 > = {
+  crm?: Resolver<Maybe<ResolversTypes["CRMDonor"]>, ParentType, ContextType>;
   crm_id?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
-  donor?: Resolver<Maybe<ResolversTypes["Donor"]>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes["uuid"], ParentType, ContextType>;
   portfolio?: Resolver<
     Maybe<ResolversTypes["portfolios"]>,
@@ -5081,29 +5098,25 @@ export type Donor_InfoResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_AggregateResolvers<
+export type Donors_AggregateResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_aggregate"] = ResolversParentTypes["donor_info_aggregate"]
+  ParentType extends ResolversParentTypes["donors_aggregate"] = ResolversParentTypes["donors_aggregate"]
 > = {
   aggregate?: Resolver<
-    Maybe<ResolversTypes["donor_info_aggregate_fields"]>,
+    Maybe<ResolversTypes["donors_aggregate_fields"]>,
     ParentType,
     ContextType
   >;
-  nodes?: Resolver<
-    Array<ResolversTypes["donor_info"]>,
-    ParentType,
-    ContextType
-  >;
+  nodes?: Resolver<Array<ResolversTypes["donors"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Aggregate_FieldsResolvers<
+export type Donors_Aggregate_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_aggregate_fields"] = ResolversParentTypes["donor_info_aggregate_fields"]
+  ParentType extends ResolversParentTypes["donors_aggregate_fields"] = ResolversParentTypes["donors_aggregate_fields"]
 > = {
   avg?: Resolver<
-    Maybe<ResolversTypes["donor_info_avg_fields"]>,
+    Maybe<ResolversTypes["donors_avg_fields"]>,
     ParentType,
     ContextType
   >;
@@ -5111,67 +5124,67 @@ export type Donor_Info_Aggregate_FieldsResolvers<
     ResolversTypes["Int"],
     ParentType,
     ContextType,
-    Partial<Donor_Info_Aggregate_FieldsCountArgs>
+    Partial<Donors_Aggregate_FieldsCountArgs>
   >;
   max?: Resolver<
-    Maybe<ResolversTypes["donor_info_max_fields"]>,
+    Maybe<ResolversTypes["donors_max_fields"]>,
     ParentType,
     ContextType
   >;
   min?: Resolver<
-    Maybe<ResolversTypes["donor_info_min_fields"]>,
+    Maybe<ResolversTypes["donors_min_fields"]>,
     ParentType,
     ContextType
   >;
   stddev?: Resolver<
-    Maybe<ResolversTypes["donor_info_stddev_fields"]>,
+    Maybe<ResolversTypes["donors_stddev_fields"]>,
     ParentType,
     ContextType
   >;
   stddev_pop?: Resolver<
-    Maybe<ResolversTypes["donor_info_stddev_pop_fields"]>,
+    Maybe<ResolversTypes["donors_stddev_pop_fields"]>,
     ParentType,
     ContextType
   >;
   stddev_samp?: Resolver<
-    Maybe<ResolversTypes["donor_info_stddev_samp_fields"]>,
+    Maybe<ResolversTypes["donors_stddev_samp_fields"]>,
     ParentType,
     ContextType
   >;
   sum?: Resolver<
-    Maybe<ResolversTypes["donor_info_sum_fields"]>,
+    Maybe<ResolversTypes["donors_sum_fields"]>,
     ParentType,
     ContextType
   >;
   var_pop?: Resolver<
-    Maybe<ResolversTypes["donor_info_var_pop_fields"]>,
+    Maybe<ResolversTypes["donors_var_pop_fields"]>,
     ParentType,
     ContextType
   >;
   var_samp?: Resolver<
-    Maybe<ResolversTypes["donor_info_var_samp_fields"]>,
+    Maybe<ResolversTypes["donors_var_samp_fields"]>,
     ParentType,
     ContextType
   >;
   variance?: Resolver<
-    Maybe<ResolversTypes["donor_info_variance_fields"]>,
+    Maybe<ResolversTypes["donors_variance_fields"]>,
     ParentType,
     ContextType
   >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Avg_FieldsResolvers<
+export type Donors_Avg_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_avg_fields"] = ResolversParentTypes["donor_info_avg_fields"]
+  ParentType extends ResolversParentTypes["donors_avg_fields"] = ResolversParentTypes["donors_avg_fields"]
 > = {
   touches?: Resolver<Maybe<ResolversTypes["Float"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Max_FieldsResolvers<
+export type Donors_Max_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_max_fields"] = ResolversParentTypes["donor_info_max_fields"]
+  ParentType extends ResolversParentTypes["donors_max_fields"] = ResolversParentTypes["donors_max_fields"]
 > = {
   crm_id?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes["uuid"]>, ParentType, ContextType>;
@@ -5184,9 +5197,9 @@ export type Donor_Info_Max_FieldsResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Min_FieldsResolvers<
+export type Donors_Min_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_min_fields"] = ResolversParentTypes["donor_info_min_fields"]
+  ParentType extends ResolversParentTypes["donors_min_fields"] = ResolversParentTypes["donors_min_fields"]
 > = {
   crm_id?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes["uuid"]>, ParentType, ContextType>;
@@ -5199,70 +5212,70 @@ export type Donor_Info_Min_FieldsResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Mutation_ResponseResolvers<
+export type Donors_Mutation_ResponseResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_mutation_response"] = ResolversParentTypes["donor_info_mutation_response"]
+  ParentType extends ResolversParentTypes["donors_mutation_response"] = ResolversParentTypes["donors_mutation_response"]
 > = {
   affected_rows?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   returning?: Resolver<
-    Array<ResolversTypes["donor_info"]>,
+    Array<ResolversTypes["donors"]>,
     ParentType,
     ContextType
   >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Stddev_FieldsResolvers<
+export type Donors_Stddev_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_stddev_fields"] = ResolversParentTypes["donor_info_stddev_fields"]
+  ParentType extends ResolversParentTypes["donors_stddev_fields"] = ResolversParentTypes["donors_stddev_fields"]
 > = {
   touches?: Resolver<Maybe<ResolversTypes["Float"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Stddev_Pop_FieldsResolvers<
+export type Donors_Stddev_Pop_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_stddev_pop_fields"] = ResolversParentTypes["donor_info_stddev_pop_fields"]
+  ParentType extends ResolversParentTypes["donors_stddev_pop_fields"] = ResolversParentTypes["donors_stddev_pop_fields"]
 > = {
   touches?: Resolver<Maybe<ResolversTypes["Float"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Stddev_Samp_FieldsResolvers<
+export type Donors_Stddev_Samp_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_stddev_samp_fields"] = ResolversParentTypes["donor_info_stddev_samp_fields"]
+  ParentType extends ResolversParentTypes["donors_stddev_samp_fields"] = ResolversParentTypes["donors_stddev_samp_fields"]
 > = {
   touches?: Resolver<Maybe<ResolversTypes["Float"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Sum_FieldsResolvers<
+export type Donors_Sum_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_sum_fields"] = ResolversParentTypes["donor_info_sum_fields"]
+  ParentType extends ResolversParentTypes["donors_sum_fields"] = ResolversParentTypes["donors_sum_fields"]
 > = {
   touches?: Resolver<Maybe<ResolversTypes["Int"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Var_Pop_FieldsResolvers<
+export type Donors_Var_Pop_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_var_pop_fields"] = ResolversParentTypes["donor_info_var_pop_fields"]
+  ParentType extends ResolversParentTypes["donors_var_pop_fields"] = ResolversParentTypes["donors_var_pop_fields"]
 > = {
   touches?: Resolver<Maybe<ResolversTypes["Float"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Var_Samp_FieldsResolvers<
+export type Donors_Var_Samp_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_var_samp_fields"] = ResolversParentTypes["donor_info_var_samp_fields"]
+  ParentType extends ResolversParentTypes["donors_var_samp_fields"] = ResolversParentTypes["donors_var_samp_fields"]
 > = {
   touches?: Resolver<Maybe<ResolversTypes["Float"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Donor_Info_Variance_FieldsResolvers<
+export type Donors_Variance_FieldsResolvers<
   ContextType = any,
-  ParentType extends ResolversParentTypes["donor_info_variance_fields"] = ResolversParentTypes["donor_info_variance_fields"]
+  ParentType extends ResolversParentTypes["donors_variance_fields"] = ResolversParentTypes["donors_variance_fields"]
 > = {
   touches?: Resolver<Maybe<ResolversTypes["Float"]>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -5284,17 +5297,17 @@ export type Mutation_RootResolvers<
     ContextType,
     RequireFields<Mutation_RootDelete_Accounts_By_PkArgs, "id">
   >;
-  delete_donor_info?: Resolver<
-    Maybe<ResolversTypes["donor_info_mutation_response"]>,
+  delete_donors?: Resolver<
+    Maybe<ResolversTypes["donors_mutation_response"]>,
     ParentType,
     ContextType,
-    RequireFields<Mutation_RootDelete_Donor_InfoArgs, "where">
+    RequireFields<Mutation_RootDelete_DonorsArgs, "where">
   >;
-  delete_donor_info_by_pk?: Resolver<
-    Maybe<ResolversTypes["donor_info"]>,
+  delete_donors_by_pk?: Resolver<
+    Maybe<ResolversTypes["donors"]>,
     ParentType,
     ContextType,
-    RequireFields<Mutation_RootDelete_Donor_Info_By_PkArgs, "id">
+    RequireFields<Mutation_RootDelete_Donors_By_PkArgs, "id">
   >;
   delete_org_memberships?: Resolver<
     Maybe<ResolversTypes["org_memberships_mutation_response"]>,
@@ -5380,17 +5393,17 @@ export type Mutation_RootResolvers<
     ContextType,
     RequireFields<Mutation_RootInsert_Accounts_OneArgs, "object">
   >;
-  insert_donor_info?: Resolver<
-    Maybe<ResolversTypes["donor_info_mutation_response"]>,
+  insert_donors?: Resolver<
+    Maybe<ResolversTypes["donors_mutation_response"]>,
     ParentType,
     ContextType,
-    RequireFields<Mutation_RootInsert_Donor_InfoArgs, "objects">
+    RequireFields<Mutation_RootInsert_DonorsArgs, "objects">
   >;
-  insert_donor_info_one?: Resolver<
-    Maybe<ResolversTypes["donor_info"]>,
+  insert_donors_one?: Resolver<
+    Maybe<ResolversTypes["donors"]>,
     ParentType,
     ContextType,
-    RequireFields<Mutation_RootInsert_Donor_Info_OneArgs, "object">
+    RequireFields<Mutation_RootInsert_Donors_OneArgs, "object">
   >;
   insert_org_memberships?: Resolver<
     Maybe<ResolversTypes["org_memberships_mutation_response"]>,
@@ -5488,23 +5501,23 @@ export type Mutation_RootResolvers<
     ContextType,
     RequireFields<Mutation_RootUpdate_Accounts_ManyArgs, "updates">
   >;
-  update_donor_info?: Resolver<
-    Maybe<ResolversTypes["donor_info_mutation_response"]>,
+  update_donors?: Resolver<
+    Maybe<ResolversTypes["donors_mutation_response"]>,
     ParentType,
     ContextType,
-    RequireFields<Mutation_RootUpdate_Donor_InfoArgs, "where">
+    RequireFields<Mutation_RootUpdate_DonorsArgs, "where">
   >;
-  update_donor_info_by_pk?: Resolver<
-    Maybe<ResolversTypes["donor_info"]>,
+  update_donors_by_pk?: Resolver<
+    Maybe<ResolversTypes["donors"]>,
     ParentType,
     ContextType,
-    RequireFields<Mutation_RootUpdate_Donor_Info_By_PkArgs, "pk_columns">
+    RequireFields<Mutation_RootUpdate_Donors_By_PkArgs, "pk_columns">
   >;
-  update_donor_info_many?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes["donor_info_mutation_response"]>>>,
+  update_donors_many?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes["donors_mutation_response"]>>>,
     ParentType,
     ContextType,
-    RequireFields<Mutation_RootUpdate_Donor_Info_ManyArgs, "updates">
+    RequireFields<Mutation_RootUpdate_Donors_ManyArgs, "updates">
   >;
   update_org_memberships?: Resolver<
     Maybe<ResolversTypes["org_memberships_mutation_response"]>,
@@ -5808,13 +5821,13 @@ export type PortfoliosResolvers<
 > = {
   id?: Resolver<ResolversTypes["uuid"], ParentType, ContextType>;
   members?: Resolver<
-    Array<ResolversTypes["donor_info"]>,
+    Array<ResolversTypes["donors"]>,
     ParentType,
     ContextType,
     Partial<PortfoliosMembersArgs>
   >;
   members_aggregate?: Resolver<
-    ResolversTypes["donor_info_aggregate"],
+    ResolversTypes["donors_aggregate"],
     ParentType,
     ContextType,
     Partial<PortfoliosMembers_AggregateArgs>
@@ -5902,6 +5915,17 @@ export type Query_RootResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["query_root"] = ResolversParentTypes["query_root"]
 > = {
+  CRMDonor?: Resolver<
+    Maybe<ResolversTypes["CRMDonor"]>,
+    ParentType,
+    ContextType,
+    Partial<Query_RootCrmDonorArgs>
+  >;
+  CRMDonors?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes["CRMDonor"]>>>,
+    ParentType,
+    ContextType
+  >;
   accounts?: Resolver<
     Array<ResolversTypes["accounts"]>,
     ParentType,
@@ -5920,34 +5944,23 @@ export type Query_RootResolvers<
     ContextType,
     RequireFields<Query_RootAccounts_By_PkArgs, "id">
   >;
-  donor?: Resolver<
-    Maybe<ResolversTypes["Donor"]>,
-    ParentType,
-    ContextType,
-    Partial<Query_RootDonorArgs>
-  >;
-  donor_info?: Resolver<
-    Array<ResolversTypes["donor_info"]>,
-    ParentType,
-    ContextType,
-    Partial<Query_RootDonor_InfoArgs>
-  >;
-  donor_info_aggregate?: Resolver<
-    ResolversTypes["donor_info_aggregate"],
-    ParentType,
-    ContextType,
-    Partial<Query_RootDonor_Info_AggregateArgs>
-  >;
-  donor_info_by_pk?: Resolver<
-    Maybe<ResolversTypes["donor_info"]>,
-    ParentType,
-    ContextType,
-    RequireFields<Query_RootDonor_Info_By_PkArgs, "id">
-  >;
   donors?: Resolver<
-    Maybe<Array<Maybe<ResolversTypes["Donor"]>>>,
+    Array<ResolversTypes["donors"]>,
     ParentType,
-    ContextType
+    ContextType,
+    Partial<Query_RootDonorsArgs>
+  >;
+  donors_aggregate?: Resolver<
+    ResolversTypes["donors_aggregate"],
+    ParentType,
+    ContextType,
+    Partial<Query_RootDonors_AggregateArgs>
+  >;
+  donors_by_pk?: Resolver<
+    Maybe<ResolversTypes["donors"]>,
+    ParentType,
+    ContextType,
+    RequireFields<Query_RootDonors_By_PkArgs, "id">
   >;
   org_memberships?: Resolver<
     Array<ResolversTypes["org_memberships"]>,
@@ -6194,36 +6207,33 @@ export type Subscription_RootResolvers<
     ContextType,
     RequireFields<Subscription_RootAccounts_StreamArgs, "batch_size" | "cursor">
   >;
-  donor_info?: SubscriptionResolver<
-    Array<ResolversTypes["donor_info"]>,
-    "donor_info",
+  donors?: SubscriptionResolver<
+    Array<ResolversTypes["donors"]>,
+    "donors",
     ParentType,
     ContextType,
-    Partial<Subscription_RootDonor_InfoArgs>
+    Partial<Subscription_RootDonorsArgs>
   >;
-  donor_info_aggregate?: SubscriptionResolver<
-    ResolversTypes["donor_info_aggregate"],
-    "donor_info_aggregate",
+  donors_aggregate?: SubscriptionResolver<
+    ResolversTypes["donors_aggregate"],
+    "donors_aggregate",
     ParentType,
     ContextType,
-    Partial<Subscription_RootDonor_Info_AggregateArgs>
+    Partial<Subscription_RootDonors_AggregateArgs>
   >;
-  donor_info_by_pk?: SubscriptionResolver<
-    Maybe<ResolversTypes["donor_info"]>,
-    "donor_info_by_pk",
+  donors_by_pk?: SubscriptionResolver<
+    Maybe<ResolversTypes["donors"]>,
+    "donors_by_pk",
     ParentType,
     ContextType,
-    RequireFields<Subscription_RootDonor_Info_By_PkArgs, "id">
+    RequireFields<Subscription_RootDonors_By_PkArgs, "id">
   >;
-  donor_info_stream?: SubscriptionResolver<
-    Array<ResolversTypes["donor_info"]>,
-    "donor_info_stream",
+  donors_stream?: SubscriptionResolver<
+    Array<ResolversTypes["donors"]>,
+    "donors_stream",
     ParentType,
     ContextType,
-    RequireFields<
-      Subscription_RootDonor_Info_StreamArgs,
-      "batch_size" | "cursor"
-    >
+    RequireFields<Subscription_RootDonors_StreamArgs, "batch_size" | "cursor">
   >;
   org_memberships?: SubscriptionResolver<
     Array<ResolversTypes["org_memberships"]>,
@@ -6648,7 +6658,7 @@ export type Verification_Tokens_Mutation_ResponseResolvers<
 };
 
 export type Resolvers<ContextType = any> = {
-  Donor?: DonorResolvers<ContextType>;
+  CRMDonor?: CrmDonorResolvers<ContextType>;
   accounts?: AccountsResolvers<ContextType>;
   accounts_aggregate?: Accounts_AggregateResolvers<ContextType>;
   accounts_aggregate_fields?: Accounts_Aggregate_FieldsResolvers<ContextType>;
@@ -6664,20 +6674,20 @@ export type Resolvers<ContextType = any> = {
   accounts_var_samp_fields?: Accounts_Var_Samp_FieldsResolvers<ContextType>;
   accounts_variance_fields?: Accounts_Variance_FieldsResolvers<ContextType>;
   bigint?: GraphQLScalarType;
-  donor_info?: Donor_InfoResolvers<ContextType>;
-  donor_info_aggregate?: Donor_Info_AggregateResolvers<ContextType>;
-  donor_info_aggregate_fields?: Donor_Info_Aggregate_FieldsResolvers<ContextType>;
-  donor_info_avg_fields?: Donor_Info_Avg_FieldsResolvers<ContextType>;
-  donor_info_max_fields?: Donor_Info_Max_FieldsResolvers<ContextType>;
-  donor_info_min_fields?: Donor_Info_Min_FieldsResolvers<ContextType>;
-  donor_info_mutation_response?: Donor_Info_Mutation_ResponseResolvers<ContextType>;
-  donor_info_stddev_fields?: Donor_Info_Stddev_FieldsResolvers<ContextType>;
-  donor_info_stddev_pop_fields?: Donor_Info_Stddev_Pop_FieldsResolvers<ContextType>;
-  donor_info_stddev_samp_fields?: Donor_Info_Stddev_Samp_FieldsResolvers<ContextType>;
-  donor_info_sum_fields?: Donor_Info_Sum_FieldsResolvers<ContextType>;
-  donor_info_var_pop_fields?: Donor_Info_Var_Pop_FieldsResolvers<ContextType>;
-  donor_info_var_samp_fields?: Donor_Info_Var_Samp_FieldsResolvers<ContextType>;
-  donor_info_variance_fields?: Donor_Info_Variance_FieldsResolvers<ContextType>;
+  donors?: DonorsResolvers<ContextType>;
+  donors_aggregate?: Donors_AggregateResolvers<ContextType>;
+  donors_aggregate_fields?: Donors_Aggregate_FieldsResolvers<ContextType>;
+  donors_avg_fields?: Donors_Avg_FieldsResolvers<ContextType>;
+  donors_max_fields?: Donors_Max_FieldsResolvers<ContextType>;
+  donors_min_fields?: Donors_Min_FieldsResolvers<ContextType>;
+  donors_mutation_response?: Donors_Mutation_ResponseResolvers<ContextType>;
+  donors_stddev_fields?: Donors_Stddev_FieldsResolvers<ContextType>;
+  donors_stddev_pop_fields?: Donors_Stddev_Pop_FieldsResolvers<ContextType>;
+  donors_stddev_samp_fields?: Donors_Stddev_Samp_FieldsResolvers<ContextType>;
+  donors_sum_fields?: Donors_Sum_FieldsResolvers<ContextType>;
+  donors_var_pop_fields?: Donors_Var_Pop_FieldsResolvers<ContextType>;
+  donors_var_samp_fields?: Donors_Var_Samp_FieldsResolvers<ContextType>;
+  donors_variance_fields?: Donors_Variance_FieldsResolvers<ContextType>;
   mutation_root?: Mutation_RootResolvers<ContextType>;
   org_memberships?: Org_MembershipsResolvers<ContextType>;
   org_memberships_aggregate?: Org_Memberships_AggregateResolvers<ContextType>;

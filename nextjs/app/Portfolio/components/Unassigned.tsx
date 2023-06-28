@@ -18,25 +18,27 @@ import { useSession } from "next-auth/react";
 import PersonList from "./PersonList";
 
 export default function Unassigned() {
-  const router = useRouter();
   const { data: session } = useSession();
-  const { data } = useGetUnassignedQuery();
-  const { data: portfolioData } = useGetPortfoliosQuery({
-    variables: { ownerID: session?.user?.id },
-  });
-  const unassigned = data?.donors?.filter(
-    (donor) => !donor?.info?.portfolio_id
+  const { data, loading } = useGetUnassignedQuery();
+  const { data: portfolioData, loading: portfoliosLoading } =
+    useGetPortfoliosQuery({
+      variables: { ownerID: session?.user?.id },
+    });
+  const unassigned = data?.CRMDonors?.filter(
+    (donor) => !donor?.momentum?.portfolio_id
   );
   const [assignToPortfolio] = useAssignToPortfolioMutation({
     refetchQueries: ["GetUnassigned", "GetPortfolios", "GetPortfolio"],
   });
   const org = portfolioData?.users_by_pk?.orgs?.[0]?.org;
+  if (loading || portfoliosLoading) return "Loading...";
   return (
     <Box pt={16}>
       <Heading>Unassigned</Heading>
       <PersonList
         people={unassigned}
         Actions={({ crmID }: any) => {
+          if (!org?.portfolios?.length) return null;
           return (
             <Menu>
               <MenuButton

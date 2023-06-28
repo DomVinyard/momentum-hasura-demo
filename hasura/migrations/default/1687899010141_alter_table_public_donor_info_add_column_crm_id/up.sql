@@ -1,2 +1,2 @@
-alter table "public"."donor_info" add column "crm_id" text
+alter table "public"."donors" add column "crm_id" text
  not null;

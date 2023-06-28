@@ -19,7 +19,7 @@ array_relationships:
           id: portfolio_id
         insertion_order: null
         remote_table:
-          name: donor_info
+          name: donors
           schema: public
 insert_permissions:
   - role: user

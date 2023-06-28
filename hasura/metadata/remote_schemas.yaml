@@ -1,4 +1,4 @@
-- name: mockAPI
+- name: crm
   definition:
     url: '{{BACKEND_URI}}/crm/mockAPI'
     timeout_seconds: 60
@@ -12,7 +12,7 @@
               relationship_type: object
               source: default
               table:
-                name: donor_info
+                name: donors
                 schema: public
-          name: info
-      type_name: Donor
+          name: momentum
+      type_name: CRMDonor

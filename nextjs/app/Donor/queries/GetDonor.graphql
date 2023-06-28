@@ -1,7 +1,8 @@
-query GetDonor($infoID: uuid!) {
-  donor_info_by_pk(id: $infoID) {
+query GetDonor($donorID: uuid!) {
+  donors_by_pk(id: $donorID) {
+    id
     touches
-    donor {
+    crm {
       name
       id
       avatar

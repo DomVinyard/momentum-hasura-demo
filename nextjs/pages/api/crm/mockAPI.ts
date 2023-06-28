@@ -5,14 +5,14 @@ import { gql } from "graphql-tag";
 
 const resolvers = {
   Query: {
-    donors: async () => {
+    CRMDonors: async () => {
       const response = await fetch(
         "https://649b246dbf7c145d023a0f46.mockapi.io/users"
       );
       const users = await response.json();
       return users;
     },
-    donor: async (parent: any, args: any) => {
+    CRMDonor: async (parent: any, args: any) => {
       const { id } = args;
       const response = await fetch(
         `https://649b246dbf7c145d023a0f46.mockapi.io/users/${id}`
@@ -22,22 +22,22 @@ const resolvers = {
       if (user) {
         return user;
       } else {
-        throw new Error("User not found");
+        throw new Error("Donor not found");
       }
     },
   },
 };
 
 const typeDefs = gql`
-  type Donor {
+  type CRMDonor {
     id: String!
     name: String!
     avatar: String!
     uuid: ID!
   }
   type Query {
-    donor(id: String): Donor
-    donors: [Donor]
+    CRMDonor(id: String): CRMDonor
+    CRMDonors: [CRMDonor]
   }
 `;
 

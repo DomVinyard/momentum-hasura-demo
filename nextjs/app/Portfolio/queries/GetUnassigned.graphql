@@ -1,10 +1,12 @@
 query GetUnassigned {
-  donors {
+  CRMDonors {
     id
     name
     avatar
-    info {
+    momentum {
+      id
       portfolio_id
+      touches
     }
   }
 }
