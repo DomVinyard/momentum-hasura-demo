@@ -1,6 +1,6 @@
 - name: crm
   definition:
-    url: '{{BACKEND_URI}}/crm/mockAPI'
+    url: '{{BACKEND_URI}}/crm'
     timeout_seconds: 60
     customization: {}
   remote_relationships:

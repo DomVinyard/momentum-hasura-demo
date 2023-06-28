@@ -93,12 +93,17 @@ export default function Header() {
                 pb={1}
                 borderRadius={"10px"}
               >
-                <Stack spacing={1}>
+                <Flex justifyContent={"space-between"} alignItems={"center"}>
                   <Text fontSize={"sm"}>{portfolio.name}</Text>
-                  <Flex alignItems={"center"} justifyContent={"space-between"}>
-                    <Flex alignItems={"center"}></Flex>
-                  </Flex>
-                </Stack>
+                  <Text
+                    fontSize={"xs"}
+                    color="blue"
+                    fontWeight={"bold"}
+                    opacity={0.6}
+                  >
+                    {portfolio.members_aggregate.aggregate?.count || 0}
+                  </Text>
+                </Flex>
               </Box>
             </Link>
           );

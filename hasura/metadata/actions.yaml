@@ -2,7 +2,7 @@ actions:
   - name: simulateSendEmail
     definition:
       kind: synchronous
-      handler: '{{BACKEND_URI}}/actions/simulateSendEmail'
+      handler: '{{BACKEND_URI}}/simulateSendEmail'
     permissions:
       - role: user
 custom_types:

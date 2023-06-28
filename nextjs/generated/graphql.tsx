@@ -3234,7 +3234,12 @@ export type GetUnassignedQuery = {
             name: string;
             avatar: string;
             momentum?:
-              | { __typename?: "donors"; id: any; portfolio_id: any }
+              | {
+                  __typename?: "donors";
+                  id: any;
+                  portfolio_id: any;
+                  touches?: number | undefined;
+                }
               | undefined;
           }
         | undefined
@@ -3296,6 +3301,15 @@ export type GetPortfoliosQuery = {
                   __typename?: "portfolios";
                   id: any;
                   name: string;
+                  members_aggregate: {
+                    __typename?: "donors_aggregate";
+                    aggregate?:
+                      | {
+                          __typename?: "donors_aggregate_fields";
+                          count: number;
+                        }
+                      | undefined;
+                  };
                 }>;
               }
             | undefined;
@@ -3658,7 +3672,7 @@ export const GetPortfolioDocument = gql`
     portfolios_by_pk(id: $portfolioID) {
       id
       name
-      members(order_by: { touches: asc }) {
+      members(order_by: { crm_id: asc }) {
         id
         crm {
           id
@@ -3751,6 +3765,7 @@ export const GetUnassignedDocument = gql`
       momentum {
         id
         portfolio_id
+        touches
       }
     }
   }
@@ -4027,6 +4042,11 @@ export const GetPortfoliosDocument = gql`
           portfolios {
             id
             name
+            members_aggregate {
+              aggregate {
+                count
+              }
+            }
           }
         }
       }

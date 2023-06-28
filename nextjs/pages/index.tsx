@@ -1,7 +1,7 @@
 import { Center } from "@chakra-ui/react";
 import Layout from "../app/_Global/_Layout";
 
-export default function Index({ initialApolloState }: any) {
+export default function Index() {
   return (
     <>
       <Layout>
