@@ -1,16 +1,5 @@
-import {
-  Box,
-  Heading,
-  Button,
-  Avatar,
-  Center,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from "@chakra-ui/react";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Avatar, Flex } from "@chakra-ui/react";
+import { Table, Tbody, Tr, Td } from "@chakra-ui/react";
 
 export default function PersonList({ people, Actions }: any) {
   return (

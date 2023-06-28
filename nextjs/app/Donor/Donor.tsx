@@ -1,20 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Center,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  Flex,
-  Heading,
-  Input,
-  Stack,
-} from "@chakra-ui/react";
+import { Avatar, Button, Center, Flex, Heading, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {
   useGetDonorQuery,
@@ -29,11 +13,7 @@ const Donor = () => {
   const [incrementTouch] = useIncrementTouchMutation({
     refetchQueries: ["GetDonor"],
   });
-  const { data } = useGetDonorQuery({
-    variables: {
-      infoID: donorID,
-    },
-  });
+  const { data } = useGetDonorQuery({ variables: { infoID: donorID } });
   const donor = data?.donor_info_by_pk;
   return (
     <Stack>

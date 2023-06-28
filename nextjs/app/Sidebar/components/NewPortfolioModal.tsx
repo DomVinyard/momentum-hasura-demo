@@ -1,32 +1,17 @@
 import {
-  Box,
   Button,
   Stack,
   Input,
   Modal,
   ModalOverlay,
   ModalContent,
-  Select,
   Heading,
   ModalCloseButton,
   ModalFooter,
-  Text,
 } from "@chakra-ui/react";
 import { useAddPortfolioMutation } from "../../../generated/graphql";
-// import {
-//   useAddBlockMutation,
-//   useAddDocumentMutation,
-// } from "../../../generated/graphql";
-import useSessionStorageState from "use-session-storage-state";
 import { useRouter } from "next/router";
-import regenerateBlock from "../../../actions/regenerateBlock";
-import refreshSuggestions from "../../../actions/refreshSuggestions";
-import getBlockGuidance from "../../../actions/getBlockGuidance";
-import generateTitle from "../../../actions/generateTitle";
-import getDocumentGuidance from "../../../actions/getDocumentGuidance";
-import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { Template, templates } from "../../../lib/templates";
 
 export default function NewDocumentModal({
   isOpen,
@@ -65,7 +50,6 @@ export default function NewDocumentModal({
           <ModalCloseButton />
           <Stack p={8}>
             <Heading fontSize={"2xl"}>Add Portfolio</Heading>
-            <Text>What do you want to call your portfolio?</Text>
             <Input
               placeholder={`My Portfolio...`}
               value={name}

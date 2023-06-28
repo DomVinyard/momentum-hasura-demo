@@ -1,26 +1,9 @@
-import {
-  Box,
-  Heading,
-  Button,
-  Avatar,
-  Center,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from "@chakra-ui/react";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Box, Heading, Button, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {
-  useAssignToPortfolioMutation,
   useDeletePortfolioMutation,
   useGetPortfolioQuery,
-  useGetPortfoliosQuery,
-  useGetUnassignedQuery,
 } from "../../../generated/graphql";
-import { BiChevronDown } from "react-icons/bi";
-import { useSession } from "next-auth/react";
 import PersonList from "./PersonList";
 
 export default function SpecificPortfolio() {
@@ -29,7 +12,7 @@ export default function SpecificPortfolio() {
   const [deletePortfolio] = useDeletePortfolioMutation({
     refetchQueries: ["GetPortfolios"],
   });
-  const { data, error, loading } = useGetPortfolioQuery({
+  const { data } = useGetPortfolioQuery({
     variables: { portfolioID },
     fetchPolicy: "cache-and-network",
   });

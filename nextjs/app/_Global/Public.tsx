@@ -1,18 +1,6 @@
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import Layout from "./_Layout";
+import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { IoCreate } from "react-icons/io5";
-import { BsCircleFill, BsPlusCircleFill } from "react-icons/bs";
 
 export default function Public() {
   return (

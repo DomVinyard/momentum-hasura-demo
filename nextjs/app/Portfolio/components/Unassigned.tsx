@@ -2,20 +2,14 @@ import {
   Box,
   Heading,
   Button,
-  Avatar,
-  Center,
-  Flex,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {
   useAssignToPortfolioMutation,
-  useDeletePortfolioMutation,
-  useGetPortfolioQuery,
   useGetPortfoliosQuery,
   useGetUnassignedQuery,
 } from "../../../generated/graphql";
@@ -26,8 +20,7 @@ import PersonList from "./PersonList";
 export default function Unassigned() {
   const router = useRouter();
   const { data: session } = useSession();
-  const portfolioID = router.query.id;
-  const { data, error, loading } = useGetUnassignedQuery();
+  const { data } = useGetUnassignedQuery();
   const { data: portfolioData } = useGetPortfoliosQuery({
     variables: { ownerID: session?.user?.id },
   });
@@ -56,12 +49,10 @@ export default function Unassigned() {
               <MenuList>
                 {org?.portfolios.map((portfolio) => (
                   <MenuItem
+                    key={portfolio.id}
                     onClick={() => {
                       assignToPortfolio({
-                        variables: {
-                          crmID,
-                          portfolioID: portfolio.id,
-                        },
+                        variables: { crmID, portfolioID: portfolio.id },
                       });
                     }}
                   >

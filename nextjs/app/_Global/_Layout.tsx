@@ -1,7 +1,7 @@
-import { Box, Button, Center, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import Sidebar from "../Sidebar/Sidebar";
 import type { ReactNode } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export const Inner = ({ children, padding }: any) => {
   return (

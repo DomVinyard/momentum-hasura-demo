@@ -5,26 +5,19 @@ import {
   Heading,
   Stack,
   Box,
-  Spinner,
   useDisclosure,
-  Center,
 } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import HamburgerMenu from "./components/HamburgerMenu";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { BiAddToQueue, BiCommentAdd } from "react-icons/bi";
+import { BiAddToQueue } from "react-icons/bi";
 import NewDocumentModal from "./components/NewPortfolioModal";
-import {
-  useAssignOrgMutation,
-  useCreateOrgMutation,
-  useGetPortfoliosQuery,
-} from "../../generated/graphql";
+import { useGetPortfoliosQuery } from "../../generated/graphql";
+import NoOrg from "./components/NoOrg";
 
 export default function Header() {
   const router = useRouter();
-
   const {
     isOpen: isNewDocumentModalOpen,
     onOpen: onNewDocumentModalOpen,
@@ -35,54 +28,12 @@ export default function Header() {
   const { data, loading } = useGetPortfoliosQuery({
     variables: { ownerID: session?.user?.id },
   });
-  const [isLoading, setLoading] = useState(router.query.state === "newdoc");
-  const [createOrg] = useCreateOrgMutation();
-  const [assignOrg] = useAssignOrgMutation({
-    refetchQueries: ["GetPortfolios"],
-  });
-
-  const getLoading = () => {
-    const isNewdoc = router.query.state === "newdoc";
-    return (
-      <Box
-        bg={isNewdoc ? "#EBFBFF" : "#FFFFFF"}
-        border={isNewdoc ? "1px solid #00C2FF" : "1px solid #fff"}
-        p={3}
-        borderRadius={"12px"}
-      >
-        <Spinner />
-      </Box>
-    );
-  };
   const org = data?.users_by_pk?.orgs?.[0]?.org;
   if (!loading && !data?.users_by_pk?.name) {
     return signOut();
   }
-  if (!loading && !org) {
-    return (
-      <Center pt={32} flexDir={"column"} w={"100vw"}>
-        <Text>No org found</Text>
-        <Button
-          onClick={async () => {
-            const orgName = prompt("Enter org name");
-            if (!orgName) return;
-            const newOrg = await createOrg({
-              variables: { name: orgName },
-            });
-            const newOrgID = newOrg.data?.insert_orgs_one?.id;
-            await assignOrg({
-              variables: { orgID: newOrgID, userID: session?.user?.id },
-            });
-          }}
-          mt={8}
-          colorScheme="blue"
-        >
-          Create Org
-        </Button>
-      </Center>
-    );
-  }
-  const isUnassigned = "unassigned" === router.query.id;
+  if (!loading && !org) return <NoOrg />;
+  const isUnassigned = "unassigned" === router.query.portfolioID;
   return (
     <Stack
       w={280}
@@ -97,7 +48,6 @@ export default function Header() {
         isOpen={isNewDocumentModalOpen}
         onOpen={onNewDocumentModalOpen}
         onClose={onNewDocumentModalClose}
-        setLoading={setLoading}
         orgID={org?.id}
       />
       <Flex w={"100%"} justifyContent={"space-between"} alignItems={"center"}>
@@ -130,11 +80,10 @@ export default function Header() {
         Portfolios
       </Heading>
       <Stack>
-        {(isLoading || loading) && getLoading()}
         {org?.portfolios.map((portfolio) => {
-          const isSelected = portfolio.id === router.query.id;
+          const isSelected = portfolio.id === router.query.portfolioID;
           return (
-            <Link href={`/portfolio/${portfolio.id}`}>
+            <Link href={`/portfolio/${portfolio.id}`} key={portfolio.id}>
               <Box
                 key={portfolio.id}
                 bg={isSelected ? "#EBFBFF" : "#FFFFFF"}
