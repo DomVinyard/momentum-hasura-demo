@@ -1,6 +1,15 @@
-import { Avatar, Button, Center, Flex, Heading, Stack } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Stack,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {
+  useAddNoteMutation,
   useGetDonorQuery,
   useIncrementTouchMutation,
   useSimulateSendEmailMutation,
@@ -16,7 +25,9 @@ const Donor = () => {
   const { data, loading, error } = useGetDonorQuery({
     variables: { donorID: donorID },
   });
-  console.log({ data, error });
+  const [addNote] = useAddNoteMutation({
+    refetchQueries: ["GetDonor"],
+  });
   const donor = data?.donors_by_pk;
   if (loading) return "Loading...";
   return (
@@ -58,6 +69,22 @@ const Donor = () => {
           Touch
         </Button>
       </Flex>
+      <Button
+        onClick={() => {
+          // run mutation
+          const content = window.prompt("Enter note content");
+          if (!content) return;
+          addNote({
+            variables: {
+              donor_id: donorID,
+              content,
+            },
+          });
+        }}
+      >
+        Add Note
+      </Button>
+      <Box>{JSON.stringify(donor?.notes)}</Box>
     </Stack>
   );
 };

@@ -2,6 +2,11 @@ query GetDonor($donorID: uuid!) {
   donors_by_pk(id: $donorID) {
     id
     touches
+    notes {
+      id
+      donor_id
+      content
+    }
     crm {
       name
       id

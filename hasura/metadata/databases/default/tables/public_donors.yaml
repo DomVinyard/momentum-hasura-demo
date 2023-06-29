@@ -11,6 +11,16 @@ object_relationships:
         remote_table:
           name: portfolios
           schema: public
+array_relationships:
+  - name: notes
+    using:
+      manual_configuration:
+        column_mapping:
+          id: donor_id
+        insertion_order: null
+        remote_table:
+          name: notes
+          schema: public
 remote_relationships:
   - definition:
       to_remote_schema:
