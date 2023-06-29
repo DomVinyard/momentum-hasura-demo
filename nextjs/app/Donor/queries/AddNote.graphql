@@ -1,0 +1,5 @@
+mutation AddNote($donor_id: uuid!, $content: String!) {
+  insert_notes_one(object: { donor_id: $donor_id, content: $content }) {
+    id
+  }
+}

@@ -4,8 +4,8 @@ import {
   GraphQLScalarTypeConfig,
 } from "graphql";
 import { gql } from "@apollo/client";
-import * as React from "react";
 import * as Apollo from "@apollo/client";
+import * as React from "react";
 import * as ApolloReactComponents from "@apollo/client/react/components";
 export type Maybe<T> = T | undefined;
 export type InputMaybe<T> = T | undefined;
@@ -615,10 +615,32 @@ export type Donors = {
   crm?: Maybe<CrmDonor>;
   crm_id: Scalars["String"];
   id: Scalars["uuid"];
+  /** An array relationship */
+  notes: Array<Notes>;
+  /** An aggregate relationship */
+  notes_aggregate: Notes_Aggregate;
   /** An object relationship */
   portfolio?: Maybe<Portfolios>;
   portfolio_id: Scalars["uuid"];
   touches?: Maybe<Scalars["Int"]>;
+};
+
+/** columns and relationships of "donors" */
+export type DonorsNotesArgs = {
+  distinct_on?: InputMaybe<Array<Notes_Select_Column>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  order_by?: InputMaybe<Array<Notes_Order_By>>;
+  where?: InputMaybe<Notes_Bool_Exp>;
+};
+
+/** columns and relationships of "donors" */
+export type DonorsNotes_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Notes_Select_Column>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  order_by?: InputMaybe<Array<Notes_Order_By>>;
+  where?: InputMaybe<Notes_Bool_Exp>;
 };
 
 /** aggregated selection of "donors" */
@@ -701,6 +723,8 @@ export type Donors_Bool_Exp = {
   _or?: InputMaybe<Array<Donors_Bool_Exp>>;
   crm_id?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
+  notes?: InputMaybe<Notes_Bool_Exp>;
+  notes_aggregate?: InputMaybe<Notes_Aggregate_Bool_Exp>;
   portfolio?: InputMaybe<Portfolios_Bool_Exp>;
   portfolio_id?: InputMaybe<Uuid_Comparison_Exp>;
   touches?: InputMaybe<Int_Comparison_Exp>;
@@ -721,6 +745,7 @@ export type Donors_Inc_Input = {
 export type Donors_Insert_Input = {
   crm_id?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["uuid"]>;
+  notes?: InputMaybe<Notes_Arr_Rel_Insert_Input>;
   portfolio?: InputMaybe<Portfolios_Obj_Rel_Insert_Input>;
   portfolio_id?: InputMaybe<Scalars["uuid"]>;
   touches?: InputMaybe<Scalars["Int"]>;
@@ -769,6 +794,13 @@ export type Donors_Mutation_Response = {
   returning: Array<Donors>;
 };
 
+/** input type for inserting object relation for remote table "donors" */
+export type Donors_Obj_Rel_Insert_Input = {
+  data: Donors_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Donors_On_Conflict>;
+};
+
 /** on_conflict condition type for table "donors" */
 export type Donors_On_Conflict = {
   constraint: Donors_Constraint;
@@ -780,6 +812,7 @@ export type Donors_On_Conflict = {
 export type Donors_Order_By = {
   crm_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  notes_aggregate?: InputMaybe<Notes_Aggregate_Order_By>;
   portfolio?: InputMaybe<Portfolios_Order_By>;
   portfolio_id?: InputMaybe<Order_By>;
   touches?: InputMaybe<Order_By>;
@@ -935,6 +968,10 @@ export type Mutation_Root = {
   delete_donors?: Maybe<Donors_Mutation_Response>;
   /** delete single row from the table: "donors" */
   delete_donors_by_pk?: Maybe<Donors>;
+  /** delete data from the table: "notes" */
+  delete_notes?: Maybe<Notes_Mutation_Response>;
+  /** delete single row from the table: "notes" */
+  delete_notes_by_pk?: Maybe<Notes>;
   /** delete data from the table: "org_memberships" */
   delete_org_memberships?: Maybe<Org_Memberships_Mutation_Response>;
   /** delete single row from the table: "org_memberships" */
@@ -967,6 +1004,10 @@ export type Mutation_Root = {
   insert_donors?: Maybe<Donors_Mutation_Response>;
   /** insert a single row into the table: "donors" */
   insert_donors_one?: Maybe<Donors>;
+  /** insert data into the table: "notes" */
+  insert_notes?: Maybe<Notes_Mutation_Response>;
+  /** insert a single row into the table: "notes" */
+  insert_notes_one?: Maybe<Notes>;
   /** insert data into the table: "org_memberships" */
   insert_org_memberships?: Maybe<Org_Memberships_Mutation_Response>;
   /** insert a single row into the table: "org_memberships" */
@@ -1004,6 +1045,12 @@ export type Mutation_Root = {
   update_donors_by_pk?: Maybe<Donors>;
   /** update multiples rows of table: "donors" */
   update_donors_many?: Maybe<Array<Maybe<Donors_Mutation_Response>>>;
+  /** update data of the table: "notes" */
+  update_notes?: Maybe<Notes_Mutation_Response>;
+  /** update single row of the table: "notes" */
+  update_notes_by_pk?: Maybe<Notes>;
+  /** update multiples rows of table: "notes" */
+  update_notes_many?: Maybe<Array<Maybe<Notes_Mutation_Response>>>;
   /** update data of the table: "org_memberships" */
   update_org_memberships?: Maybe<Org_Memberships_Mutation_Response>;
   /** update single row of the table: "org_memberships" */
@@ -1063,6 +1110,16 @@ export type Mutation_RootDelete_DonorsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Donors_By_PkArgs = {
+  id: Scalars["uuid"];
+};
+
+/** mutation root */
+export type Mutation_RootDelete_NotesArgs = {
+  where: Notes_Bool_Exp;
+};
+
+/** mutation root */
+export type Mutation_RootDelete_Notes_By_PkArgs = {
   id: Scalars["uuid"];
 };
 
@@ -1148,6 +1205,18 @@ export type Mutation_RootInsert_DonorsArgs = {
 export type Mutation_RootInsert_Donors_OneArgs = {
   object: Donors_Insert_Input;
   on_conflict?: InputMaybe<Donors_On_Conflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsert_NotesArgs = {
+  objects: Array<Notes_Insert_Input>;
+  on_conflict?: InputMaybe<Notes_On_Conflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsert_Notes_OneArgs = {
+  object: Notes_Insert_Input;
+  on_conflict?: InputMaybe<Notes_On_Conflict>;
 };
 
 /** mutation root */
@@ -1267,6 +1336,23 @@ export type Mutation_RootUpdate_Donors_ManyArgs = {
 };
 
 /** mutation root */
+export type Mutation_RootUpdate_NotesArgs = {
+  _set?: InputMaybe<Notes_Set_Input>;
+  where: Notes_Bool_Exp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdate_Notes_By_PkArgs = {
+  _set?: InputMaybe<Notes_Set_Input>;
+  pk_columns: Notes_Pk_Columns_Input;
+};
+
+/** mutation root */
+export type Mutation_RootUpdate_Notes_ManyArgs = {
+  updates: Array<Notes_Updates>;
+};
+
+/** mutation root */
 export type Mutation_RootUpdate_Org_MembershipsArgs = {
   _set?: InputMaybe<Org_Memberships_Set_Input>;
   where: Org_Memberships_Bool_Exp;
@@ -1366,6 +1452,209 @@ export type Mutation_RootUpdate_Verification_Tokens_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Verification_Tokens_ManyArgs = {
   updates: Array<Verification_Tokens_Updates>;
+};
+
+/** columns and relationships of "notes" */
+export type Notes = {
+  __typename?: "notes";
+  content: Scalars["String"];
+  created_at: Scalars["timestamptz"];
+  /** An object relationship */
+  donor?: Maybe<Donors>;
+  donor_id: Scalars["uuid"];
+  id: Scalars["uuid"];
+};
+
+/** aggregated selection of "notes" */
+export type Notes_Aggregate = {
+  __typename?: "notes_aggregate";
+  aggregate?: Maybe<Notes_Aggregate_Fields>;
+  nodes: Array<Notes>;
+};
+
+export type Notes_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Notes_Aggregate_Bool_Exp_Count>;
+};
+
+export type Notes_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Notes_Select_Column>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<Notes_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "notes" */
+export type Notes_Aggregate_Fields = {
+  __typename?: "notes_aggregate_fields";
+  count: Scalars["Int"];
+  max?: Maybe<Notes_Max_Fields>;
+  min?: Maybe<Notes_Min_Fields>;
+};
+
+/** aggregate fields of "notes" */
+export type Notes_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Notes_Select_Column>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** order by aggregate values of table "notes" */
+export type Notes_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Notes_Max_Order_By>;
+  min?: InputMaybe<Notes_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "notes" */
+export type Notes_Arr_Rel_Insert_Input = {
+  data: Array<Notes_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Notes_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "notes". All fields are combined with a logical 'AND'. */
+export type Notes_Bool_Exp = {
+  _and?: InputMaybe<Array<Notes_Bool_Exp>>;
+  _not?: InputMaybe<Notes_Bool_Exp>;
+  _or?: InputMaybe<Array<Notes_Bool_Exp>>;
+  content?: InputMaybe<String_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  donor?: InputMaybe<Donors_Bool_Exp>;
+  donor_id?: InputMaybe<Uuid_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "notes" */
+export enum Notes_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  NotesPkey = "notes_pkey",
+}
+
+/** input type for inserting data into table "notes" */
+export type Notes_Insert_Input = {
+  content?: InputMaybe<Scalars["String"]>;
+  created_at?: InputMaybe<Scalars["timestamptz"]>;
+  donor?: InputMaybe<Donors_Obj_Rel_Insert_Input>;
+  donor_id?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** aggregate max on columns */
+export type Notes_Max_Fields = {
+  __typename?: "notes_max_fields";
+  content?: Maybe<Scalars["String"]>;
+  created_at?: Maybe<Scalars["timestamptz"]>;
+  donor_id?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+};
+
+/** order by max() on columns of table "notes" */
+export type Notes_Max_Order_By = {
+  content?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  donor_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Notes_Min_Fields = {
+  __typename?: "notes_min_fields";
+  content?: Maybe<Scalars["String"]>;
+  created_at?: Maybe<Scalars["timestamptz"]>;
+  donor_id?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+};
+
+/** order by min() on columns of table "notes" */
+export type Notes_Min_Order_By = {
+  content?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  donor_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "notes" */
+export type Notes_Mutation_Response = {
+  __typename?: "notes_mutation_response";
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars["Int"];
+  /** data from the rows affected by the mutation */
+  returning: Array<Notes>;
+};
+
+/** on_conflict condition type for table "notes" */
+export type Notes_On_Conflict = {
+  constraint: Notes_Constraint;
+  update_columns?: Array<Notes_Update_Column>;
+  where?: InputMaybe<Notes_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "notes". */
+export type Notes_Order_By = {
+  content?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  donor?: InputMaybe<Donors_Order_By>;
+  donor_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: notes */
+export type Notes_Pk_Columns_Input = {
+  id: Scalars["uuid"];
+};
+
+/** select columns of table "notes" */
+export enum Notes_Select_Column {
+  /** column name */
+  Content = "content",
+  /** column name */
+  CreatedAt = "created_at",
+  /** column name */
+  DonorId = "donor_id",
+  /** column name */
+  Id = "id",
+}
+
+/** input type for updating data in table "notes" */
+export type Notes_Set_Input = {
+  content?: InputMaybe<Scalars["String"]>;
+  created_at?: InputMaybe<Scalars["timestamptz"]>;
+  donor_id?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** Streaming cursor of the table "notes" */
+export type Notes_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Notes_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Notes_Stream_Cursor_Value_Input = {
+  content?: InputMaybe<Scalars["String"]>;
+  created_at?: InputMaybe<Scalars["timestamptz"]>;
+  donor_id?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** update columns of table "notes" */
+export enum Notes_Update_Column {
+  /** column name */
+  Content = "content",
+  /** column name */
+  CreatedAt = "created_at",
+  /** column name */
+  DonorId = "donor_id",
+  /** column name */
+  Id = "id",
+}
+
+export type Notes_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Notes_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Notes_Bool_Exp;
 };
 
 /** column ordering options */
@@ -2008,6 +2297,12 @@ export type Query_Root = {
   donors_aggregate: Donors_Aggregate;
   /** fetch data from the table: "donors" using primary key columns */
   donors_by_pk?: Maybe<Donors>;
+  /** An array relationship */
+  notes: Array<Notes>;
+  /** An aggregate relationship */
+  notes_aggregate: Notes_Aggregate;
+  /** fetch data from the table: "notes" using primary key columns */
+  notes_by_pk?: Maybe<Notes>;
   /** fetch data from the table: "org_memberships" */
   org_memberships: Array<Org_Memberships>;
   /** fetch aggregated fields from the table: "org_memberships" */
@@ -2087,6 +2382,26 @@ export type Query_RootDonors_AggregateArgs = {
 };
 
 export type Query_RootDonors_By_PkArgs = {
+  id: Scalars["uuid"];
+};
+
+export type Query_RootNotesArgs = {
+  distinct_on?: InputMaybe<Array<Notes_Select_Column>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  order_by?: InputMaybe<Array<Notes_Order_By>>;
+  where?: InputMaybe<Notes_Bool_Exp>;
+};
+
+export type Query_RootNotes_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Notes_Select_Column>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  order_by?: InputMaybe<Array<Notes_Order_By>>;
+  where?: InputMaybe<Notes_Bool_Exp>;
+};
+
+export type Query_RootNotes_By_PkArgs = {
   id: Scalars["uuid"];
 };
 
@@ -2431,6 +2746,14 @@ export type Subscription_Root = {
   donors_by_pk?: Maybe<Donors>;
   /** fetch data from the table in a streaming manner: "donors" */
   donors_stream: Array<Donors>;
+  /** An array relationship */
+  notes: Array<Notes>;
+  /** An aggregate relationship */
+  notes_aggregate: Notes_Aggregate;
+  /** fetch data from the table: "notes" using primary key columns */
+  notes_by_pk?: Maybe<Notes>;
+  /** fetch data from the table in a streaming manner: "notes" */
+  notes_stream: Array<Notes>;
   /** fetch data from the table: "org_memberships" */
   org_memberships: Array<Org_Memberships>;
   /** fetch aggregated fields from the table: "org_memberships" */
@@ -2531,6 +2854,32 @@ export type Subscription_RootDonors_StreamArgs = {
   batch_size: Scalars["Int"];
   cursor: Array<InputMaybe<Donors_Stream_Cursor_Input>>;
   where?: InputMaybe<Donors_Bool_Exp>;
+};
+
+export type Subscription_RootNotesArgs = {
+  distinct_on?: InputMaybe<Array<Notes_Select_Column>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  order_by?: InputMaybe<Array<Notes_Order_By>>;
+  where?: InputMaybe<Notes_Bool_Exp>;
+};
+
+export type Subscription_RootNotes_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Notes_Select_Column>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  order_by?: InputMaybe<Array<Notes_Order_By>>;
+  where?: InputMaybe<Notes_Bool_Exp>;
+};
+
+export type Subscription_RootNotes_By_PkArgs = {
+  id: Scalars["uuid"];
+};
+
+export type Subscription_RootNotes_StreamArgs = {
+  batch_size: Scalars["Int"];
+  cursor: Array<InputMaybe<Notes_Stream_Cursor_Input>>;
+  where?: InputMaybe<Notes_Bool_Exp>;
 };
 
 export type Subscription_RootOrg_MembershipsArgs = {
@@ -3126,6 +3475,16 @@ export type Verification_Tokens_Updates = {
   where: Verification_Tokens_Bool_Exp;
 };
 
+export type AddNoteMutationVariables = Exact<{
+  donor_id: Scalars["uuid"];
+  content: Scalars["String"];
+}>;
+
+export type AddNoteMutation = {
+  __typename?: "mutation_root";
+  insert_notes_one?: { __typename?: "notes"; id: any } | undefined;
+};
+
 export type GetDonorQueryVariables = Exact<{
   donorID: Scalars["uuid"];
 }>;
@@ -3137,6 +3496,12 @@ export type GetDonorQuery = {
         __typename?: "donors";
         id: any;
         touches?: number | undefined;
+        notes: Array<{
+          __typename?: "notes";
+          id: any;
+          donor_id: any;
+          content: string;
+        }>;
         crm?:
           | {
               __typename?: "CRMDonor";
@@ -3318,11 +3683,78 @@ export type GetPortfoliosQuery = {
     | undefined;
 };
 
+export const AddNoteDocument = gql`
+  mutation AddNote($donor_id: uuid!, $content: String!) {
+    insert_notes_one(object: { donor_id: $donor_id, content: $content }) {
+      id
+    }
+  }
+`;
+export type AddNoteMutationFn = Apollo.MutationFunction<
+  AddNoteMutation,
+  AddNoteMutationVariables
+>;
+export type AddNoteComponentProps = Omit<
+  ApolloReactComponents.MutationComponentOptions<
+    AddNoteMutation,
+    AddNoteMutationVariables
+  >,
+  "mutation"
+>;
+
+export const AddNoteComponent = (props: AddNoteComponentProps) => (
+  <ApolloReactComponents.Mutation<AddNoteMutation, AddNoteMutationVariables>
+    mutation={AddNoteDocument}
+    {...props}
+  />
+);
+
+/**
+ * __useAddNoteMutation__
+ *
+ * To run a mutation, you first call `useAddNoteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddNoteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addNoteMutation, { data, loading, error }] = useAddNoteMutation({
+ *   variables: {
+ *      donor_id: // value for 'donor_id'
+ *      content: // value for 'content'
+ *   },
+ * });
+ */
+export function useAddNoteMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    AddNoteMutation,
+    AddNoteMutationVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<AddNoteMutation, AddNoteMutationVariables>(
+    AddNoteDocument,
+    options
+  );
+}
+export type AddNoteMutationHookResult = ReturnType<typeof useAddNoteMutation>;
+export type AddNoteMutationResult = Apollo.MutationResult<AddNoteMutation>;
+export type AddNoteMutationOptions = Apollo.BaseMutationOptions<
+  AddNoteMutation,
+  AddNoteMutationVariables
+>;
 export const GetDonorDocument = gql`
   query GetDonor($donorID: uuid!) {
     donors_by_pk(id: $donorID) {
       id
       touches
+      notes {
+        id
+        donor_id
+        content
+      }
       crm {
         name
         id
@@ -4301,6 +4733,7 @@ export type ResolversTypes = {
   donors_min_fields: ResolverTypeWrapper<Donors_Min_Fields>;
   donors_min_order_by: Donors_Min_Order_By;
   donors_mutation_response: ResolverTypeWrapper<Donors_Mutation_Response>;
+  donors_obj_rel_insert_input: Donors_Obj_Rel_Insert_Input;
   donors_on_conflict: Donors_On_Conflict;
   donors_order_by: Donors_Order_By;
   donors_pk_columns_input: Donors_Pk_Columns_Input;
@@ -4325,6 +4758,30 @@ export type ResolversTypes = {
   donors_variance_fields: ResolverTypeWrapper<Donors_Variance_Fields>;
   donors_variance_order_by: Donors_Variance_Order_By;
   mutation_root: ResolverTypeWrapper<{}>;
+  notes: ResolverTypeWrapper<Notes>;
+  notes_aggregate: ResolverTypeWrapper<Notes_Aggregate>;
+  notes_aggregate_bool_exp: Notes_Aggregate_Bool_Exp;
+  notes_aggregate_bool_exp_count: Notes_Aggregate_Bool_Exp_Count;
+  notes_aggregate_fields: ResolverTypeWrapper<Notes_Aggregate_Fields>;
+  notes_aggregate_order_by: Notes_Aggregate_Order_By;
+  notes_arr_rel_insert_input: Notes_Arr_Rel_Insert_Input;
+  notes_bool_exp: Notes_Bool_Exp;
+  notes_constraint: Notes_Constraint;
+  notes_insert_input: Notes_Insert_Input;
+  notes_max_fields: ResolverTypeWrapper<Notes_Max_Fields>;
+  notes_max_order_by: Notes_Max_Order_By;
+  notes_min_fields: ResolverTypeWrapper<Notes_Min_Fields>;
+  notes_min_order_by: Notes_Min_Order_By;
+  notes_mutation_response: ResolverTypeWrapper<Notes_Mutation_Response>;
+  notes_on_conflict: Notes_On_Conflict;
+  notes_order_by: Notes_Order_By;
+  notes_pk_columns_input: Notes_Pk_Columns_Input;
+  notes_select_column: Notes_Select_Column;
+  notes_set_input: Notes_Set_Input;
+  notes_stream_cursor_input: Notes_Stream_Cursor_Input;
+  notes_stream_cursor_value_input: Notes_Stream_Cursor_Value_Input;
+  notes_update_column: Notes_Update_Column;
+  notes_updates: Notes_Updates;
   order_by: Order_By;
   org_memberships: ResolverTypeWrapper<Org_Memberships>;
   org_memberships_aggregate: ResolverTypeWrapper<Org_Memberships_Aggregate>;
@@ -4531,6 +4988,7 @@ export type ResolversParentTypes = {
   donors_min_fields: Donors_Min_Fields;
   donors_min_order_by: Donors_Min_Order_By;
   donors_mutation_response: Donors_Mutation_Response;
+  donors_obj_rel_insert_input: Donors_Obj_Rel_Insert_Input;
   donors_on_conflict: Donors_On_Conflict;
   donors_order_by: Donors_Order_By;
   donors_pk_columns_input: Donors_Pk_Columns_Input;
@@ -4553,6 +5011,27 @@ export type ResolversParentTypes = {
   donors_variance_fields: Donors_Variance_Fields;
   donors_variance_order_by: Donors_Variance_Order_By;
   mutation_root: {};
+  notes: Notes;
+  notes_aggregate: Notes_Aggregate;
+  notes_aggregate_bool_exp: Notes_Aggregate_Bool_Exp;
+  notes_aggregate_bool_exp_count: Notes_Aggregate_Bool_Exp_Count;
+  notes_aggregate_fields: Notes_Aggregate_Fields;
+  notes_aggregate_order_by: Notes_Aggregate_Order_By;
+  notes_arr_rel_insert_input: Notes_Arr_Rel_Insert_Input;
+  notes_bool_exp: Notes_Bool_Exp;
+  notes_insert_input: Notes_Insert_Input;
+  notes_max_fields: Notes_Max_Fields;
+  notes_max_order_by: Notes_Max_Order_By;
+  notes_min_fields: Notes_Min_Fields;
+  notes_min_order_by: Notes_Min_Order_By;
+  notes_mutation_response: Notes_Mutation_Response;
+  notes_on_conflict: Notes_On_Conflict;
+  notes_order_by: Notes_Order_By;
+  notes_pk_columns_input: Notes_Pk_Columns_Input;
+  notes_set_input: Notes_Set_Input;
+  notes_stream_cursor_input: Notes_Stream_Cursor_Input;
+  notes_stream_cursor_value_input: Notes_Stream_Cursor_Value_Input;
+  notes_updates: Notes_Updates;
   org_memberships: Org_Memberships;
   org_memberships_aggregate: Org_Memberships_Aggregate;
   org_memberships_aggregate_bool_exp: Org_Memberships_Aggregate_Bool_Exp;
@@ -5108,6 +5587,18 @@ export type DonorsResolvers<
   crm?: Resolver<Maybe<ResolversTypes["CRMDonor"]>, ParentType, ContextType>;
   crm_id?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   id?: Resolver<ResolversTypes["uuid"], ParentType, ContextType>;
+  notes?: Resolver<
+    Array<ResolversTypes["notes"]>,
+    ParentType,
+    ContextType,
+    Partial<DonorsNotesArgs>
+  >;
+  notes_aggregate?: Resolver<
+    ResolversTypes["notes_aggregate"],
+    ParentType,
+    ContextType,
+    Partial<DonorsNotes_AggregateArgs>
+  >;
   portfolio?: Resolver<
     Maybe<ResolversTypes["portfolios"]>,
     ParentType,
@@ -5329,6 +5820,18 @@ export type Mutation_RootResolvers<
     ContextType,
     RequireFields<Mutation_RootDelete_Donors_By_PkArgs, "id">
   >;
+  delete_notes?: Resolver<
+    Maybe<ResolversTypes["notes_mutation_response"]>,
+    ParentType,
+    ContextType,
+    RequireFields<Mutation_RootDelete_NotesArgs, "where">
+  >;
+  delete_notes_by_pk?: Resolver<
+    Maybe<ResolversTypes["notes"]>,
+    ParentType,
+    ContextType,
+    RequireFields<Mutation_RootDelete_Notes_By_PkArgs, "id">
+  >;
   delete_org_memberships?: Resolver<
     Maybe<ResolversTypes["org_memberships_mutation_response"]>,
     ParentType,
@@ -5424,6 +5927,18 @@ export type Mutation_RootResolvers<
     ParentType,
     ContextType,
     RequireFields<Mutation_RootInsert_Donors_OneArgs, "object">
+  >;
+  insert_notes?: Resolver<
+    Maybe<ResolversTypes["notes_mutation_response"]>,
+    ParentType,
+    ContextType,
+    RequireFields<Mutation_RootInsert_NotesArgs, "objects">
+  >;
+  insert_notes_one?: Resolver<
+    Maybe<ResolversTypes["notes"]>,
+    ParentType,
+    ContextType,
+    RequireFields<Mutation_RootInsert_Notes_OneArgs, "object">
   >;
   insert_org_memberships?: Resolver<
     Maybe<ResolversTypes["org_memberships_mutation_response"]>,
@@ -5539,6 +6054,24 @@ export type Mutation_RootResolvers<
     ContextType,
     RequireFields<Mutation_RootUpdate_Donors_ManyArgs, "updates">
   >;
+  update_notes?: Resolver<
+    Maybe<ResolversTypes["notes_mutation_response"]>,
+    ParentType,
+    ContextType,
+    RequireFields<Mutation_RootUpdate_NotesArgs, "where">
+  >;
+  update_notes_by_pk?: Resolver<
+    Maybe<ResolversTypes["notes"]>,
+    ParentType,
+    ContextType,
+    RequireFields<Mutation_RootUpdate_Notes_By_PkArgs, "pk_columns">
+  >;
+  update_notes_many?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes["notes_mutation_response"]>>>,
+    ParentType,
+    ContextType,
+    RequireFields<Mutation_RootUpdate_Notes_ManyArgs, "updates">
+  >;
   update_org_memberships?: Resolver<
     Maybe<ResolversTypes["org_memberships_mutation_response"]>,
     ParentType,
@@ -5652,6 +6185,93 @@ export type Mutation_RootResolvers<
     ContextType,
     RequireFields<Mutation_RootUpdate_Verification_Tokens_ManyArgs, "updates">
   >;
+};
+
+export type NotesResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["notes"] = ResolversParentTypes["notes"]
+> = {
+  content?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  created_at?: Resolver<ResolversTypes["timestamptz"], ParentType, ContextType>;
+  donor?: Resolver<Maybe<ResolversTypes["donors"]>, ParentType, ContextType>;
+  donor_id?: Resolver<ResolversTypes["uuid"], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes["uuid"], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Notes_AggregateResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["notes_aggregate"] = ResolversParentTypes["notes_aggregate"]
+> = {
+  aggregate?: Resolver<
+    Maybe<ResolversTypes["notes_aggregate_fields"]>,
+    ParentType,
+    ContextType
+  >;
+  nodes?: Resolver<Array<ResolversTypes["notes"]>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Notes_Aggregate_FieldsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["notes_aggregate_fields"] = ResolversParentTypes["notes_aggregate_fields"]
+> = {
+  count?: Resolver<
+    ResolversTypes["Int"],
+    ParentType,
+    ContextType,
+    Partial<Notes_Aggregate_FieldsCountArgs>
+  >;
+  max?: Resolver<
+    Maybe<ResolversTypes["notes_max_fields"]>,
+    ParentType,
+    ContextType
+  >;
+  min?: Resolver<
+    Maybe<ResolversTypes["notes_min_fields"]>,
+    ParentType,
+    ContextType
+  >;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Notes_Max_FieldsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["notes_max_fields"] = ResolversParentTypes["notes_max_fields"]
+> = {
+  content?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
+  created_at?: Resolver<
+    Maybe<ResolversTypes["timestamptz"]>,
+    ParentType,
+    ContextType
+  >;
+  donor_id?: Resolver<Maybe<ResolversTypes["uuid"]>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes["uuid"]>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Notes_Min_FieldsResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["notes_min_fields"] = ResolversParentTypes["notes_min_fields"]
+> = {
+  content?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
+  created_at?: Resolver<
+    Maybe<ResolversTypes["timestamptz"]>,
+    ParentType,
+    ContextType
+  >;
+  donor_id?: Resolver<Maybe<ResolversTypes["uuid"]>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes["uuid"]>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Notes_Mutation_ResponseResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes["notes_mutation_response"] = ResolversParentTypes["notes_mutation_response"]
+> = {
+  affected_rows?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
+  returning?: Resolver<Array<ResolversTypes["notes"]>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Org_MembershipsResolvers<
@@ -5982,6 +6602,24 @@ export type Query_RootResolvers<
     ContextType,
     RequireFields<Query_RootDonors_By_PkArgs, "id">
   >;
+  notes?: Resolver<
+    Array<ResolversTypes["notes"]>,
+    ParentType,
+    ContextType,
+    Partial<Query_RootNotesArgs>
+  >;
+  notes_aggregate?: Resolver<
+    ResolversTypes["notes_aggregate"],
+    ParentType,
+    ContextType,
+    Partial<Query_RootNotes_AggregateArgs>
+  >;
+  notes_by_pk?: Resolver<
+    Maybe<ResolversTypes["notes"]>,
+    ParentType,
+    ContextType,
+    RequireFields<Query_RootNotes_By_PkArgs, "id">
+  >;
   org_memberships?: Resolver<
     Array<ResolversTypes["org_memberships"]>,
     ParentType,
@@ -6254,6 +6892,34 @@ export type Subscription_RootResolvers<
     ParentType,
     ContextType,
     RequireFields<Subscription_RootDonors_StreamArgs, "batch_size" | "cursor">
+  >;
+  notes?: SubscriptionResolver<
+    Array<ResolversTypes["notes"]>,
+    "notes",
+    ParentType,
+    ContextType,
+    Partial<Subscription_RootNotesArgs>
+  >;
+  notes_aggregate?: SubscriptionResolver<
+    ResolversTypes["notes_aggregate"],
+    "notes_aggregate",
+    ParentType,
+    ContextType,
+    Partial<Subscription_RootNotes_AggregateArgs>
+  >;
+  notes_by_pk?: SubscriptionResolver<
+    Maybe<ResolversTypes["notes"]>,
+    "notes_by_pk",
+    ParentType,
+    ContextType,
+    RequireFields<Subscription_RootNotes_By_PkArgs, "id">
+  >;
+  notes_stream?: SubscriptionResolver<
+    Array<ResolversTypes["notes"]>,
+    "notes_stream",
+    ParentType,
+    ContextType,
+    RequireFields<Subscription_RootNotes_StreamArgs, "batch_size" | "cursor">
   >;
   org_memberships?: SubscriptionResolver<
     Array<ResolversTypes["org_memberships"]>,
@@ -6709,6 +7375,12 @@ export type Resolvers<ContextType = any> = {
   donors_var_samp_fields?: Donors_Var_Samp_FieldsResolvers<ContextType>;
   donors_variance_fields?: Donors_Variance_FieldsResolvers<ContextType>;
   mutation_root?: Mutation_RootResolvers<ContextType>;
+  notes?: NotesResolvers<ContextType>;
+  notes_aggregate?: Notes_AggregateResolvers<ContextType>;
+  notes_aggregate_fields?: Notes_Aggregate_FieldsResolvers<ContextType>;
+  notes_max_fields?: Notes_Max_FieldsResolvers<ContextType>;
+  notes_min_fields?: Notes_Min_FieldsResolvers<ContextType>;
+  notes_mutation_response?: Notes_Mutation_ResponseResolvers<ContextType>;
   org_memberships?: Org_MembershipsResolvers<ContextType>;
   org_memberships_aggregate?: Org_Memberships_AggregateResolvers<ContextType>;
   org_memberships_aggregate_fields?: Org_Memberships_Aggregate_FieldsResolvers<ContextType>;
