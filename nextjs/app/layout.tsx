@@ -1,3 +1,4 @@
+"use client";
 import { SessionProvider, useSession } from "next-auth/react";
 import type { AppProps } from "next/app";
 import type { Session } from "next-auth";
@@ -5,7 +6,7 @@ import { useApollo } from "../lib/apollo";
 import { ApolloProvider } from "@apollo/client/react";
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import Public from "../app/_Global/Public";
+import Public from "./components/Public";
 
 const theme = extendTheme({
   components: {
@@ -18,25 +19,23 @@ const theme = extendTheme({
     },
   },
 });
-const WithApollo = ({ Component, pageProps, token, status }: any) => {
-  const apolloClient = useApollo(pageProps.initialApolloState, token);
-  return (
-    <ApolloProvider client={apolloClient}>
-      <Component {...{ ...pageProps, status }} />
-    </ApolloProvider>
-  );
+
+const WithApollo = ({ children, token, status }: any) => {
+  const apolloClient = useApollo(undefined, token);
+  return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
 };
 
-const WithSession = ({ Component, pageProps }: any) => {
+const WithSession = ({ children }: any) => {
   const { data: session, status } = useSession();
   const token = session?.user?.token;
   const router = useRouter();
-  const pathname = router.pathname;
-  if (!token && !pathname.includes("/share")) return <Public />;
+  if (!token) return <Public />;
   return (
     <Box>
       <Box display={{ base: "none", md: "block" }}>
-        <WithApollo {...{ Component, pageProps, token, status }} />
+        <WithApollo token={token} status={status}>
+          {children}
+        </WithApollo>
       </Box>
       <Box display={{ base: "block", md: "none" }}>
         This demo is not available on mobile devices. Please use a desktop
@@ -46,14 +45,11 @@ const WithSession = ({ Component, pageProps }: any) => {
   );
 };
 
-export default function App({
-  Component,
-  pageProps,
-}: AppProps<{ session: Session; initialApolloState: any }>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <ChakraProvider theme={theme}>
-      <SessionProvider session={pageProps.session}>
-        <WithSession pageProps={pageProps} Component={Component} />
+      <SessionProvider session={undefined}>
+        <WithSession>{children}</WithSession>
       </SessionProvider>
     </ChakraProvider>
   );
