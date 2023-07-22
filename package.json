@@ -4,9 +4,8 @@
   "description": "momentum-demo",
   "scripts": {
     "dev": "yarn --cwd ./nextjs install && docker-compose up",
-    "hasura": "cd hasura && hasura console --admin-secret=admin_secret",
     "dev:reset": "sh docker-reset.sh && docker-compose up --build --remove-orphans --force-recreate",
-    "database": "docker-compose up momentum-demo-postgres momentum-demo-hasura"
+    "hasura": "cd hasura && hasura console --admin-secret=admin_secret"
   },
   "author": "Me",
   "license": "Commercial",

@@ -1,5 +1,0 @@
-mutation CreateOrg($name: String!) {
-  insert_orgs_one(object: { name: $name }) {
-    id
-  }
-}

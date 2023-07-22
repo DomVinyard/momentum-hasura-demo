@@ -2,23 +2,21 @@ table:
   name: orgs
   schema: public
 array_relationships:
-  - name: members
+  - name: contacts
     using:
-      manual_configuration:
-        column_mapping:
-          id: org_id
-        insertion_order: null
-        remote_table:
-          name: org_memberships
+      foreign_key_constraint_on:
+        column: org_id
+        table:
+          name: contacts
           schema: public
-  - name: portfolios
+  - name: users
     using:
       manual_configuration:
         column_mapping:
           id: org_id
         insertion_order: null
         remote_table:
-          name: portfolios
+          name: org_users
           schema: public
 insert_permissions:
   - role: user
@@ -33,6 +31,6 @@ select_permissions:
         - id
         - name
       filter:
-        members:
+        users:
           user_id:
             _eq: X-Hasura-User-Id

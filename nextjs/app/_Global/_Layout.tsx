@@ -1,5 +1,4 @@
 import { Box, Flex } from "@chakra-ui/react";
-import Sidebar from "../Sidebar/Sidebar";
 import type { ReactNode } from "react";
 import { useSession } from "next-auth/react";
 
@@ -16,11 +15,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <Inner>
       <Flex maxW={"100vw"} w={"100vw"}>
-        {session?.user && (
-          <Box>
-            <Sidebar />
-          </Box>
-        )}
+        {session?.user && <Box>logged in</Box>}
         <Flex flex={1} justifyContent={"space-around"}>
           <Box w={{ md: 900 }} pb={40} px={8} ml={session?.user ? 280 : 0}>
             {children}

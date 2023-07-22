@@ -1,5 +1,5 @@
 table:
-  name: org_memberships
+  name: org_users
   schema: public
 object_relationships:
   - name: org

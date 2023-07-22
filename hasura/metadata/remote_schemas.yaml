@@ -1,18 +1,1 @@
-- name: crm
-  definition:
-    url: '{{BACKEND_URI}}/crm'
-    timeout_seconds: 60
-    customization: {}
-  remote_relationships:
-    - relationships:
-        - definition:
-            to_source:
-              field_mapping:
-                id: crm_id
-              relationship_type: object
-              source: default
-              table:
-                name: donors
-                schema: public
-          name: momentum
-      type_name: CRMDonor
+[]

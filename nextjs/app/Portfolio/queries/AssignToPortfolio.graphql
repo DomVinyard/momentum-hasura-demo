@@ -1,5 +1,0 @@
-mutation AssignToPortfolio($portfolioID: uuid!, $crmID: String!) {
-  insert_donors_one(object: { portfolio_id: $portfolioID, crm_id: $crmID }) {
-    id
-  }
-}

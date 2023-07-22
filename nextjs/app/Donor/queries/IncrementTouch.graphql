@@ -1,6 +1,0 @@
-mutation IncrementTouch($infoID: uuid!) {
-  update_donors_by_pk(pk_columns: { id: $infoID }, _inc: { touches: 1 }) {
-    id
-    touches
-  }
-}

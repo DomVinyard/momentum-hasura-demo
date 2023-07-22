@@ -2,15 +2,6 @@ table:
   name: users
   schema: public
 array_relationships:
-  - name: accounts
-    using:
-      manual_configuration:
-        column_mapping:
-          id: userId
-        insertion_order: null
-        remote_table:
-          name: accounts
-          schema: public
   - name: orgs
     using:
       manual_configuration:
@@ -18,26 +9,27 @@ array_relationships:
           id: user_id
         insertion_order: null
         remote_table:
-          name: org_memberships
-          schema: public
-  - name: sessions
-    using:
-      manual_configuration:
-        column_mapping:
-          id: userId
-        insertion_order: null
-        remote_table:
-          name: sessions
+          name: org_users
           schema: public
 select_permissions:
   - role: user
     permission:
       columns:
         - email
-        - image
-        - name
         - emailVerified
         - id
+        - image
+        - metadata
+        - name
       filter:
         id:
           _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - metadata
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
