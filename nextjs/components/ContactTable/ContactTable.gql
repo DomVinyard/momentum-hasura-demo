@@ -1,0 +1,14 @@
+query ContactTable($userID: uuid!) {
+  users_by_pk(id: $userID) {
+    orgs(order_by: { created_at: desc }, limit: 1) {
+      org {
+        id
+        contacts {
+          id
+          name
+          metadata
+        }
+      }
+    }
+  }
+}

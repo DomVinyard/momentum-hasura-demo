@@ -1,0 +1,7 @@
+query ContactInfo($contactID: uuid!) {
+  contacts_by_pk(id: $contactID) {
+    id
+    name
+    metadata
+  }
+}

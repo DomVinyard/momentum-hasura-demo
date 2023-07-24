@@ -4,9 +4,11 @@ table:
 array_relationships:
   - name: contacts
     using:
-      foreign_key_constraint_on:
-        column: org_id
-        table:
+      manual_configuration:
+        column_mapping:
+          id: org_id
+        insertion_order: null
+        remote_table:
           name: contacts
           schema: public
   - name: users
@@ -23,14 +25,28 @@ insert_permissions:
     permission:
       check: {}
       columns:
+        - metadata
         - name
 select_permissions:
   - role: user
     permission:
       columns:
+        - created_at
         - id
+        - metadata
         - name
       filter:
         users:
           user_id:
             _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - metadata
+        - name
+      filter:
+        users:
+          user_id:
+            _eq: X-Hasura-User-Id
+      check: null

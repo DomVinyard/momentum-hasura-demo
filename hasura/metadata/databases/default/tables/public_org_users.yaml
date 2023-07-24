@@ -33,9 +33,10 @@ select_permissions:
   - role: user
     permission:
       columns:
+        - created_at
         - id
-        - user_id
         - org_id
+        - user_id
       filter:
         user_id:
           _eq: X-Hasura-User-Id

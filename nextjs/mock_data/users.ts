@@ -281,6 +281,7 @@ export default [
       date: "2023-10-13T09:36:21.919Z",
       amount: 100000,
     },
+    do_not_contact: true,
     correspondance: [
       {
         date: "2023-02-13T09:36:21.919Z",
@@ -323,104 +324,6 @@ export default [
       {
         date: "2023-02-23T09:36:21.919Z",
         amount: 170000,
-      },
-    ],
-  },
-  {
-    createdAt: "2023-07-13T00:25:02.125Z",
-    name: "Elias Anderson",
-    avatar:
-      "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/375.jpg",
-    address_1: "312",
-    address_2: "Euless",
-    stage: "stewardship",
-    address_3: "44268-9745",
-    phone: "437-542-4865",
-    id: "10",
-    lifetime_giving: 18000,
-    next_gift_prediction: {
-      date: "2023-09-13T09:36:21.919Z",
-      amount: 100000,
-    },
-    correspondance: [
-      {
-        date: "2023-02-13T09:36:21.919Z",
-        type: "email",
-        content: "Hi Elias, thanks for your donation!",
-        direction: "outbound",
-      },
-      {
-        date: "2023-02-14T09:36:21.919Z",
-        type: "email",
-        content: "Just happy to help!",
-        direction: "inbound",
-      },
-      {
-        date: "2023-02-15T09:36:21.919Z",
-        type: "email",
-        content: "Hopefully see you at the conference?",
-        direction: "outbound",
-      },
-      {
-        date: "2023-02-16T09:36:21.919Z",
-        type: "email",
-        content: "Definitely, I can't wait!",
-        direction: "inbound",
-      },
-    ],
-    gifts: [
-      {
-        date: "2023-03-03T09:36:21.919Z",
-        amount: 810000,
-      },
-    ],
-  },
-  {
-    createdAt: "2023-07-13T08:51:09.165Z",
-    name: "Sophia Yost",
-    avatar:
-      "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/767.jpg",
-    address_1: "58749",
-    address_2: "Oakland Park",
-    address_3: "73091-2684",
-    phone: "1-922-724-4866",
-    id: "11",
-    lifetime_giving: 22000,
-    stage: "cultivation",
-    next_gift_prediction: {
-      date: "2023-09-13T09:36:21.919Z",
-      amount: 100000,
-    },
-    correspondance: [],
-    do_not_contact: true,
-    gifts: [
-      {
-        date: "2022-09-13T09:36:21.919Z",
-        amount: 490000,
-      },
-    ],
-  },
-  {
-    createdAt: "2023-07-13T00:31:19.522Z",
-    name: "Cody Bailey",
-    avatar:
-      "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/832.jpg",
-    address_1: "33670",
-    address_2: "Tempe",
-    address_3: "71454-8407",
-    phone: "788-977-2250 x630",
-    id: "12",
-    lifetime_giving: 100000,
-    stage: "solicitation",
-    next_gift_prediction: {
-      date: "2023-09-13T09:36:21.919Z",
-      amount: 100000,
-    },
-    correspondance: [],
-    gifts: [
-      {
-        date: "2023-03-13T09:36:21.919Z",
-        amount: 80000,
       },
     ],
   },

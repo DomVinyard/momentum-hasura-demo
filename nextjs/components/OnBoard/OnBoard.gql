@@ -1,0 +1,17 @@
+mutation CreateOrg($name: String!, $metadata: jsonb) {
+  insert_orgs_one(object: { name: $name, metadata: $metadata }) {
+    id
+  }
+}
+mutation AddUserToOrg($orgID: uuid!, $userID: uuid!) {
+  insert_org_users_one(object: { org_id: $orgID, user_id: $userID }) {
+    id
+  }
+}
+mutation AddContactsToOrg($contacts: [contacts_insert_input!]!) {
+  insert_contacts(objects: $contacts) {
+    returning {
+      id
+    }
+  }
+}

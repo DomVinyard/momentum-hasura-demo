@@ -22,7 +22,7 @@ const config: CodegenConfig = {
       },
     },
   ],
-  documents: ["**/*.graphql"],
+  documents: ["**/*.gql", "**/*.graphql"],
   watch: true,
   overwrite: true,
   config: {

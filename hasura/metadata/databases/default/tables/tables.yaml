@@ -1,3 +1,4 @@
+- "!include public_accounts.yaml"
 - "!include public_contacts.yaml"
 - "!include public_org_users.yaml"
 - "!include public_orgs.yaml"
